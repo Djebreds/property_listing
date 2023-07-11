@@ -40,6 +40,9 @@ gem 'activeadmin'
 gem 'arctic_admin'
 gem 'devise'
 gem 'pundit'
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'kaminari-i18n'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
