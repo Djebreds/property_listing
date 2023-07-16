@@ -1,5 +1,7 @@
-unless AdminUser.find_by(email: 'admin@example.com').present?
-  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+
+unless AdminUser.any?
+  AdminUser.create!(email: 'admin@dadang.com', password: 'password', password_confirmation: 'password', role: :admin)
+  AdminUser.create!(email: 'marketing@dadang.com', password: 'password', password_confirmation: 'password', role: :marketing_officer)
 end
 
 unless PropertyCategory.any?

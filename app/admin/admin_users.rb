@@ -1,24 +1,20 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :role, :locale
 
   index do
     selectable_column
     id_column
     column :email
+    column :role
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
 
-    actions defaults: false do |customer|
-      links = ''.html_safe
-      links += link_to I18n.t('active_admin.view'), admin_admin_user_path(customer, locale: I18n.locale), class: "member_link view_link"
-      links += link_to I18n.t('active_admin.edit'), edit_admin_admin_user_path(customer, locale: I18n.locale), class: "member_link edit_link"
-      links += link_to I18n.t('active_admin.delete'), admin_admin_user_path(customer, locale: I18n.locale), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), class: "member_link delete_link"
-      links
-    end
+    actions
   end
 
   filter :email
+  filter :role
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
@@ -28,6 +24,7 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :role, as: :select
     end
     f.actions
   end
