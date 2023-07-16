@@ -1,5 +1,6 @@
 ActiveAdmin.register Property do
-  permit_params :name, :description, :property_category_id, :property_type_id, :available_on, images: [],
+  permit_params :name, :description, :property_category_id, :property_type_id, :locale,
+                :available_on, :latitude, :longitude, :location, :note, images: [],
                 property_facility_attributes: %i[id furniture electric_power water_resource internet parking _destroy],
                 property_general_attributes: %i[id land_size building_size floor_level view style_design surrounding _destroy],
                 property_indoor_attributes: %i[id living_room dinning_room kitchen bedroom ensuite_bathroom maid_room storage guest_toilet _destroy],
@@ -35,62 +36,7 @@ ActiveAdmin.register Property do
     end
   end
 
-
-  form do |f|
-    f.inputs do
-      f.input :name
-      f.input :property_type_id, as: :nested_select,
-                                     level_1: { attribute: :property_category_id, collection: PropertyCategory.all },
-                                     level_2: { attribute: :property_type_id, collection: PropertyType.all }
-      f.input :available_on
-      f.input :description, input_html: { rows: 2 }
-      f.input :images, as: :file, input_html: { multiple: true }
-
-
-      panel '' do
-        f.has_many :property_general, class: 'has_one' do |ff|
-          ff.input :land_size, label: 'Land size (m²)'
-          ff.input :building_size, label: 'Building size (m²)'
-          ff.input :floor_level
-          ff.input :view
-          ff.input :style_design, as: :select
-          ff.input :surrounding
-        end
-      end
-
-      panel '' do
-        f.has_many :property_facility, class: 'has_one' do |ff|
-          ff.input :furniture, as: :select
-          ff.input :electric_power, label: 'Electric Power (watt)'
-          ff.input :water_resource, as: :select
-          ff.input :internet, as: :select
-          ff.input :parking, as: :select
-        end
-      end
-
-      panel '' do
-        f.has_many :property_indoor, class: 'has_one' do |ff|
-          ff.input :living_room, as: :select
-          ff.input :dinning_room, as: :select
-          ff.input :kitchen, as: :select
-          ff.input :bedroom
-          ff.input :ensuite_bathroom
-          ff.input :maid_room, as: :select
-          ff.input :storage, as: :select
-          ff.input :guest_toilet, as: :select
-        end
-      end
-
-      panel '' do
-        f.has_many :property_outdoor, class: 'has_one' do |ff|
-          ff.input :swimming_pool, as: :select
-          ff.input :garden, as: :select
-          ff.input :balcony, as: :select
-        end
-      end
-    end
-    actions
-  end
+  form partial: 'admin/form'
 
   action_item :add_property_general, only: [:edit, :new] do
     link_to "Add Property Rental", "", class: "btn", style: "display: none;"
@@ -109,7 +55,18 @@ ActiveAdmin.register Property do
       end
 
       panel 'General Information' do
-        table_for resource.property_general, :land_size, :building_size, :floor_level, :view, :style_design, :surrounding
+        table_for resource.property_general do
+          column :land_size do |general|
+            general.land_size_in_meter
+          end
+          column :building_size do |general|
+            general.building_size_in_meter
+          end
+          column :floor_level
+          column :view
+          column :style_design
+          column :surrounding
+        end
       end
 
       panel 'Indoor Information' do
@@ -121,7 +78,48 @@ ActiveAdmin.register Property do
       end
 
       panel 'Facility Information' do
-        table_for resource.property_facility, :furniture, :electric_power, :water_resource, :internet, :parking
+        table_for resource.property_facility do
+          column :furniture
+          column :electric_power do |facility|
+            facility.electric_power_in_watt
+          end
+          column :water_resource
+          column :internet
+          column :parking
+        end
+      end
+
+      panel 'Property Kind' do
+        table_for resource.property_kinds do
+          column :kind do |property_kind|
+            link_to property_kind.kind, admin_property_property_kind_path(property, property_kind, locale: I18n.locale)
+          end
+          column :price
+          column 'Detail Costs' do |property_kind|
+            link_to 'Detail Costs', admin_property_property_kind_path(property, property_kind, locale: I18n.locale)
+          end
+        end
+      end
+
+      panel 'Property Rental' do
+        table_for resource.property_rentals do
+          column :rental_type do |property_rental|
+            property_rental.rental_type
+          end
+          column :price
+          column 'Detail Costs' do |property_rental|
+            link_to 'Detail Costs', admin_property_property_rental_path(property, property_rental, locale: I18n.locale)
+          end
+        end
+      end
+
+      panel 'Map' do
+        div id: 'map', data: {
+                      controller: 'get-place-google-maps',
+                      action: "google-maps-callback@window->get-place-google-maps#initMap",
+                      target: 'get-place-google-maps.latitude', 'get-place-google-maps-latitude-value': resource.latitude,
+                      target: 'get-place-google-maps.longitude', 'get-place-google-maps-longitude-value': resource.longitude,
+                      target: 'get-place-google-maps.map' }, style: 'width: 100%; height: 400px;'
       end
     end
   end

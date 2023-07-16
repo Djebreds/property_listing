@@ -65,6 +65,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_055515) do
     t.boolean "is_available", default: true, null: false
     t.date "available_on"
     t.string "note"
+    t.decimal "latitude", precision: 10, scale: 6, default: "0.0", null: false
+    t.decimal "longitude", precision: 10, scale: 6, default: "0.0", null: false
+    t.string "location", null: false
     t.integer "created_by", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -122,12 +125,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_055515) do
   end
 
   create_table "property_kind_costs", force: :cascade do |t|
-    t.bigint "property_rental_id", null: false
+    t.bigint "property_kind_id", null: false
     t.string "name", null: false
     t.string "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["property_rental_id"], name: "index_property_kind_costs_on_property_rental_id"
+    t.index ["property_kind_id"], name: "index_property_kind_costs_on_property_kind_id"
   end
 
   create_table "property_kinds", force: :cascade do |t|
@@ -138,14 +141,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_055515) do
     t.datetime "updated_at", null: false
     t.index ["kind"], name: "index_property_kinds_on_kind", unique: true
     t.index ["property_id"], name: "index_property_kinds_on_property_id"
-  end
-
-  create_table "property_locations", force: :cascade do |t|
-    t.decimal "latitude", precision: 10, scale: 6, default: "0.0", null: false
-    t.decimal "longitude", precision: 10, scale: 6, default: "0.0", null: false
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "property_outdoors", force: :cascade do |t|
@@ -190,7 +185,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_055515) do
   add_foreign_key "property_facilities", "properties"
   add_foreign_key "property_generals", "properties"
   add_foreign_key "property_indoors", "properties"
-  add_foreign_key "property_kind_costs", "property_rentals"
+  add_foreign_key "property_kind_costs", "property_kinds"
   add_foreign_key "property_kinds", "properties"
   add_foreign_key "property_outdoors", "properties"
   add_foreign_key "property_rental_costs", "property_rentals"

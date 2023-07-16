@@ -1,7 +1,7 @@
 ActiveAdmin.register PropertyRental do
   belongs_to :property
 
-  permit_params :rental_type, :price,
+  permit_params :rental_type, :price, :locale,
                 property_rental_costs_attributes: %i[id name value _destroy]
 
   controller do
@@ -27,7 +27,8 @@ ActiveAdmin.register PropertyRental do
   end
 
   form do |f|
-    f.semantic_errors
+    flash[:error]
+
     f.inputs do
       f.input :rental_type, as: :select
       f.input :price

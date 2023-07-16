@@ -8,14 +8,22 @@ class Property < ApplicationRecord
   has_one :property_general, dependent: :destroy
   has_one :property_indoor, dependent: :destroy
   has_one :property_outdoor, dependent: :destroy
-  has_one :property_location, dependent: :destroy
 
   has_many_attached :images
 
-  accepts_nested_attributes_for :property_facility, allow_destroy: false
-  accepts_nested_attributes_for :property_general, allow_destroy: false
-  accepts_nested_attributes_for :property_indoor, allow_destroy: false
-  accepts_nested_attributes_for :property_outdoor, allow_destroy: false
+  accepts_nested_attributes_for :property_facility, allow_destroy: true
+  accepts_nested_attributes_for :property_general, allow_destroy: true
+  accepts_nested_attributes_for :property_indoor, allow_destroy: true
+  accepts_nested_attributes_for :property_outdoor, allow_destroy: true
 
   enum created_by: { admin: 0, marketing_officer: 1 }
+
+  reverse_geocoded_by :latitude, :longitude
+
+  validates :name, :latitude, :longitude, :property_type, :property_category,
+            :location, :images, presence: true
+
+  def is_available?
+    available_on > Date.current
+  end
 end

@@ -1,0 +1,10 @@
+<%# <script>
+  window.initMap = function(...args) {
+    const event = new CustomEvent("google-maps-callback", { bubbles: true, cancelable: true });
+    event.args = args;
+    window.dispatchEvent(event);
+  };
+
+</script> %>
+<%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>

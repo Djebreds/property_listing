@@ -235,8 +235,6 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
-  config.register_javascript 'property_categories_and_types.js'
-
   # == CSV options
   #
   # Set the CSV builder separator
@@ -338,7 +336,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  # config.footer = 'my custom footer text'
+  config.footer = 'Property Listing'
 
   # == Sorting
   #
@@ -367,3 +365,13 @@ ActiveAdmin.setup do |config|
     end
   end
 end
+
+module AdminPageLayoutOverride
+  def build_active_admin_head
+    within super do
+      render "admin/custom_javascript"
+    end
+  end
+end
+
+ActiveAdmin::Views::Pages::Base.send :prepend, AdminPageLayoutOverride

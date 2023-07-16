@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import GetPlaceGoogleMapsController from "./get_place_google_maps_controller"
+application.register("get-place-google-maps", GetPlaceGoogleMapsController)
+
+import GoogleMapPlacesController from "./google_map_places_controller"
+application.register("google-map-places", GoogleMapPlacesController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

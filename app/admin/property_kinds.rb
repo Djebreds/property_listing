@@ -1,7 +1,7 @@
 ActiveAdmin.register PropertyKind do
   belongs_to :property
 
-  permit_params :kind, :price,
+  permit_params :kind, :price, :locale,
                 property_kind_costs_attributes: %i[id name value _destroy]
 
   controller do
@@ -20,14 +20,15 @@ ActiveAdmin.register PropertyKind do
 
   show do
     default_main_content do
-      panel 'Kind Cost' do
+      panel 'Rental Cost' do
         table_for resource.property_kind_costs, :name, :value
       end
     end
   end
 
   form do |f|
-    f.semantic_errors
+    flash[:error]
+
     f.inputs do
       f.input :kind, as: :select
       f.input :price

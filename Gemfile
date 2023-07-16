@@ -46,6 +46,8 @@ gem 'kaminari-i18n'
 gem 'money-rails'
 gem 'geocoder'
 gem 'activeadmin_addons'
+gem 'gmaps4rails'
+gem 'dotenv-rails'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
