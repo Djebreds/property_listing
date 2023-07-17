@@ -3,13 +3,13 @@
   <section class="container-fluid bg-warning pt-5">
     <div class="container" style="padding-top: 10rem">
       <header class="text-center">
-        <h2 class="fw-bold">Contact Us</h2>
+        <h2 class="fw-bold"><%= t('header.contact_us') %></h2>
       </header>
       <div class="row mt-5">
         <div class="col">
           <div class="card border-0 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
             <div class="card-body">
-              <h4 class="fw-bold">General</h4>
+              <h4 class="fw-bold"><%= t('contact.general') %></h4>
               <div class="d-flex gap-4 align-items-center mb-3">
                 <%= image_tag 'email_icon.png', width: 50 %>
                 <div class="email d-grid">
@@ -28,7 +28,7 @@
         <div class="col">
           <div class="card border-0 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
             <div class="card-body">
-              <h4 class="fw-bold">Office Address</h4>
+              <h4 class="fw-bold"><%= t('contact.office_address') %></h4>
               <div class="d-flex gap-2 align-items-center">
                 <%= image_tag 'location_icon.png', width: 50, height: 50 %>
                 <p class="mb-0">Jl. Soekarno Hatta No.104, Babakan Ciparay, Kec. Babakan Ciparay, Kota Bandung, Jawa Barat 40223</p>
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <h2 class="fw-bold">Our Office</h2>
+      <h2 class="fw-bold"><%= t('contact.our_office') %></h2>
       <div class="text-center">
         <iframe
           width="100%"

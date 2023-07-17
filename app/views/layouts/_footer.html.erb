@@ -11,26 +11,23 @@
       </div>
       <div class="col-md-2 mx-2">
         <div class="d-grid">
-          <h4 class="fw-bold">Category</h4>
-          <a href="" class="text-decoration-none text-white my-2">Real Estate For Sale</a>
-          <a href="" class="text-decoration-none text-white my-2">Long Term Rentals</a>
-          <a href="" class="text-decoration-none text-white my-2">Leasehold</a>
-          <a href="" class="text-decoration-none text-white my-2">Freehold</a>
+          <h4 class="fw-bold"><%= t('footer.property_category') %></h4>
+          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.real_estate_for_sale') %></a>
+          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.long_term_rentals') %></a>
         </div>
       </div>
       <div class="col-md-2 mx-2">
         <div class="d-grid">
-          <h4 class="fw-bold">Property Type</h4>
-          <a href="" class="text-decoration-none text-white my-2">Villa</a>
-          <a href="" class="text-decoration-none text-white my-2">Land</a>
-          <a href="" class="text-decoration-none text-white my-2">Other</a>
+          <h4 class="fw-bold"><%= t('footer.property_type') %></h4>
+          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.villa') %></a>
+          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.land') %></a>
+          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.other') %></a>
         </div>
       </div>
       <div class="col-md-2 mx-2">
         <div class="d-grid">
-          <h4 class="fw-bold">Company</h4>
-          <a href="" class="text-decoration-none text-white my-2">About Us</a>
-          <%= link_to 'Contact Us', contact_path, class: 'text-decoration-none text-white my-2' %>
+          <h4 class="fw-bold"><%= t('footer.company') %></h4>
+          <%= link_to t('footer.contact_us'), contact_path, class: 'text-decoration-none text-white my-2' %>
         </div>
       </div>
     </div>

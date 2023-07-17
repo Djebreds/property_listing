@@ -1,21 +1,21 @@
 <section class="container-fluid bg-white p-4">
   <div class="container">
-    <h2 class="fw-bold my-4">Newest Property</h2>
+    <h2 class="fw-bold my-4"><%= t('home.newest_property') %></h2>
     <div class="row">
       <div class="col-md-4">
         <div class="card border-0 rounded-none shadow-lg p-0 mb-5 rounded">
           <div id="caraousel" class="carousel slide ">
             <div class="categories position-absolute start-50 end-0 bottom-0 top-10 justify-content-center p-0 mx-2 d-flex z-1" style="padding-bottom: 1rem">
               <div class="btn-group h-10 align-items-center">
-                <a href="#" class="btn btn-dark btn-sm text-white opacity-75" aria-current="page">Freehold</a>
-                <a href="#" class="btn btn-dark btn-sm text-white opacity-75">Leasehold</a>
+                <a href="#" class="btn btn-dark btn-sm text-white opacity-75" aria-current="page"><%= t('property.freehold') %></a>
+                <a href="#" class="btn btn-dark btn-sm text-white opacity-75"><%= t('property.leasehold') %></a>
               </div>
             </div>
-            <div class="type position-absolute start-0 end-50 bottom-0 top-90 justify-content-center p-0 mx-2 d-flex z-1" style="padding-bottom: 1rem">
+            <div class="type position-absolute start-0 end-50 bottom-0 top-90 justify-content-center p-0 ms-5 d-flex z-1" style="padding-bottom: 1rem">
               <div class="btn-group h-10 align-items-center">
-                <a href="#" class="btn btn-dark btn-sm text-white opacity-75" aria-current="page">Yearly</a>
-                <a href="#" class="btn btn-dark btn-sm text-white opacity-75">Monthly</a>
-                <a href="#" class="btn btn-dark btn-sm text-white opacity-75">Daily</a>
+                <a href="#" class="btn btn-dark btn-sm text-white opacity-75" aria-current="page"><%= t('property.yearly') %></a>
+                <a href="#" class="btn btn-dark btn-sm text-white opacity-75"><%= t('property.monthly') %></a>
+                <a href="#" class="btn btn-dark btn-sm text-white opacity-75"><%= t('property.daily') %></a>
               </div>
             </div>
 
@@ -51,27 +51,26 @@
                   <%= image_tag 'bedroom_icon.png', width: 20, height: 20 %>
                   <p class="fw-bold mb-0 fs-5">5</p>
                 </div>
-                <span class="fw-medium text-muted"><small>Bedrooms</small></span>
+                <span class="fw-medium text-muted"><small><%= t('property.bedrooms') %></small></span>
               </div>
               <div class="bathroom">
                 <div class="icon d-flex align-items-center gap-2">
                   <%= image_tag 'bath_room_icon.png', width: 20, height: 20 %>
                   <p class="fw-bold mb-0 fs-5">3</p>
                 </div>
-                <span class="fw-medium text-muted"><small>Bathrooms</small></span>
+                <span class="fw-medium text-muted"><small><%= t('property.bathrooms') %></small></span>
               </div>
               <div class="building-size">
                 <div class="icon d-flex align-items-center gap-2">
                   <%= image_tag 'building_size_icon.png', width: 20, height: 20 %>
                   <p class="fw-bold mb-0 fs-5">360m2</p>
                 </div>
-                <span class="fw-medium text-muted"><small>Building Size</small></span>
+                <span class="fw-medium text-muted"><small><%= t('property.building_size') %></small></span>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
