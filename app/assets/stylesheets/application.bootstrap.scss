@@ -1,2 +1,8 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body { font-family: 'Poppins', sans-serif !important; }
+#instagram:hover { opacity: 100 !important; transition: 0.3s ease-in-out; }
+#facebook:hover { opacity: 100 !important; transition: 0.3s ease-in-out; }
+#twitter:hover { opacity: 100 !important; transition: 0.3s ease-in-out; }

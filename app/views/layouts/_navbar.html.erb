@@ -1,0 +1,29 @@
+<header class="fixed-top">
+  <%= render 'layouts/top_bar' %>
+  <nav class="navbar navbar-expand-lg bg-warning py-4">
+    <div class="container">
+      <%= link_to root_path, class: 'navbar-brand fw-semibold' do %>
+        Property<span class="text-muted">List</span>
+      <% end %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse fw-semibold align-items-center justify-content-around" id="navbarNavDropdown">
+        <ul class="navbar-nav py-2 align-items-center text-center fs-5">
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link" href="#">Properties</a>
+          </li>
+          <li class="nav-item ps-3">
+            <%= link_to 'Contact Us', contact_path, class: 'nav-link' %>
+          </li>
+        </ul>
+        <div class="text-center text-md-end">
+          <button type="button" class="btn btn-dark text-warning rounded-5 px-4 py-2 fw-semibold">Sell or Rent My Property</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

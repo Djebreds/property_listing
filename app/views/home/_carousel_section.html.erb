@@ -1,0 +1,104 @@
+<section style="background-color: #000">
+  <div class="card rounded-bottom-0 p-2 p-md-5 border-0" style="border-radius: 80px">
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row justify-content-center justify-content-md-between align-items-center">
+          <div class="col d-block d-md-none order-last order-md-first mt-4">
+            <h2 class="fw-bold" style="font-size: 30px">Our Top 5 Properties You Can't Miss!</h2>
+            <p class="fs-5 my-5">Explore our handpicked selection of the most exceptional properties in town. From luxurious villas to prime land opportunities, these top 5 properties are the epitome of elegance and value. Discover your next dream home today!</p>
+            <button class="btn btn-warning text-dark rounded-5 fw-bold py-2 px-4">Find Property</button>
+          </div>
+
+           <div class="col d-none d-md-block">
+            <h2 class="fw-bold" style="font-size: 50px">Our Top 5 Properties You Can't Miss!</h2>
+            <p class="fs-5 my-5">Explore our handpicked selection of the most exceptional properties in town. From luxurious villas to prime land opportunities, these top 5 properties are the epitome of elegance and value. Discover your next dream home today!</p>
+            <button class="btn btn-warning text-dark rounded-5 fw-bold py-2 px-4">Find Property</button>
+          </div>
+
+          <div class="col">
+            <div id="carouselExampleAutoplaying" class="carousel slide mt-2 rounded-5" data-bs-ride="carousel">
+              <div class="carousel-inner shadow-lg mb-5 rounded">
+                <div class="carousel-item active rounded-3" style="background-color: #000;">
+                  <div class="card border-0 rounded-none">
+                    <%= image_tag 'sample_1.jpg', class: 'card-img-top' %>
+                    <div class="card-body">
+                      <a href="#" class="fw-semibold stretched-link text-decoration-none text-dark fs-5">Villa hotel antik</a>
+                      <h5 class="fw-bold">IDR 1.200.000</h5>
+                      <p class="mb-0 text-secondary">Soreang, Bandung, West Java</p>
+                      <hr>
+                      <div class="detail d-flex gap-3">
+                        <div class="bedroom">
+                          <div class="icon d-flex align-items-center gap-2">
+                            <%= image_tag 'bedroom_icon.png', width: 20, height: 20 %>
+                            <p class="fw-bold mb-0 fs-5">5</p>
+                          </div>
+                          <span class="fw-medium text-muted"><small>Bedrooms</small></span>
+                        </div>
+                        <div class="bathroom">
+                          <div class="icon d-flex align-items-center gap-2">
+                            <%= image_tag 'bath_room_icon.png', width: 20, height: 20 %>
+                            <p class="fw-bold mb-0 fs-5">3</p>
+                          </div>
+                          <span class="fw-medium text-muted"><small>Bathrooms</small></span>
+                        </div>
+                        <div class="building-size">
+                          <div class="icon d-flex align-items-center gap-2">
+                            <%= image_tag 'building_size_icon.png', width: 20, height: 20 %>
+                            <p class="fw-bold mb-0 fs-5">360m2</p>
+                          </div>
+                          <span class="fw-medium text-muted"><small>Building Size</small></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item active rounded-3" style="background-color: #000;">
+                  <div class="card border-0 rounded-none">
+                    <%= image_tag 'sample_1.jpg', class: 'card-img-top' %>
+                    <div class="card-body">
+                      <a href="#" class="fw-semibold stretched-link text-decoration-none text-dark fs-5">Villa hotel antik</a>
+                      <h5 class="fw-bold">IDR 1.200.000</h5>
+                      <p class="mb-0 text-secondary">Soreang, Bandung, West Java</p>
+                      <hr>
+                      <div class="detail d-flex gap-3">
+                        <div class="bedroom">
+                          <div class="icon d-flex align-items-center gap-2">
+                            <%= image_tag 'bedroom_icon.png', width: 20, height: 20 %>
+                            <p class="fw-bold mb-0 fs-5">5</p>
+                          </div>
+                          <span class="fw-medium text-muted"><small>Bedrooms</small></span>
+                        </div>
+                        <div class="bathroom">
+                          <div class="icon d-flex align-items-center gap-2">
+                            <%= image_tag 'bath_room_icon.png', width: 20, height: 20 %>
+                            <p class="fw-bold mb-0 fs-5">3</p>
+                          </div>
+                          <span class="fw-medium text-muted"><small>Bathrooms</small></span>
+                        </div>
+                        <div class="building-size">
+                          <div class="icon d-flex align-items-center gap-2">
+                            <%= image_tag 'building_size_icon.png', width: 20, height: 20 %>
+                            <p class="fw-bold mb-0 fs-5">360m2</p>
+                          </div>
+                          <span class="fw-medium text-muted"><small>Building Size</small></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-warning p-4 m-2 rounded-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon  bg-warning p-4 m-2 rounded-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
