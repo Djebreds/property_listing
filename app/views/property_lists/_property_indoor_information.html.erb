@@ -1,0 +1,74 @@
+<div class="col-md-3">
+  <% if property.property_indoor.present? %>
+    <table class="table table-hover table-borderless">
+      <tr>
+        <td class="fw-semibold" colspan="3"><%= t('property.indoor_information').upcase %></td>
+      </tr>
+      <tbody class="border-top border-dark">
+        <% if property.property_indoor.living_room.present? %>
+          <tr>
+            <td><%= t('property.living_room') %></td>
+            <td>:</td>
+            <td><%= property_enclosed_type(property.property_indoor.living_room) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.dinning_room.present? %>
+          <tr>
+            <td><%= t('property.dinning_room') %></td>
+            <td>:</td>
+            <td><%= property_enclosed_type(property.property_indoor.dinning_room) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.kitchen.present? %>
+          <tr>
+            <td><%= t('property.kitchen') %></td>
+            <td>:</td>
+            <td><%= property_enclosed_type(property.property_indoor.kitchen) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.bedroom.present? %>
+          <tr>
+            <td><%= t('property.bedroom') %></td>
+            <td>:</td>
+            <td><%= property.property_indoor.bedroom %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.bathroom.present? %>
+          <tr>
+            <td><%= t('property.bathroom') %></td>
+            <td>:</td>
+            <td><%= property.property_indoor.bathroom %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.ensuite_bathroom.present? %>
+          <tr>
+            <td><%= t('property.ensuite_bathroom') %></td>
+            <td>:</td>
+            <td><%= property.property_indoor.ensuite_bathroom %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.maid_room.present? %>
+          <tr>
+            <td><%= t('property.maid_room') %></td>
+            <td>:</td>
+            <td><%= property_available(property.property_indoor.maid_room) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.storage.present? %>
+          <tr>
+            <td><%= t('property.storage') %></td>
+            <td>:</td>
+            <td><%= property_available(property.property_indoor.storage) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_indoor.guest_toilet.present? %>
+          <tr>
+            <td><%= t('property.guest_toilet') %></td>
+            <td>:</td>
+            <td><%= property_available(property.property_indoor.guest_toilet) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

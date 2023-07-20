@@ -1,0 +1,27 @@
+<main>
+  <%= render 'layouts/navbar' %>
+    <section class="container-fluid vh-auto p-0 m-0" style="padding-top: 15rem">
+      <%= render 'property_header' %>
+      <div class="container">
+        <div class="btn-group">
+          <button class="btn btn-warning my-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort By
+          </button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item">Category</li>
+            <li class="dropdown-item">Kind</li>
+            <li class="dropdown-item">Newests</li>
+            <li class="dropdown-item">Poppular</li>
+          </ul>
+        </div>
+        <div class="row">
+          <% @properties.each do |property| %>
+            <div class="col-md-4">
+              <%= render 'property_lists/property_card', property: property %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <%= render 'layouts/footer' %>
+</main>

@@ -12,3 +12,6 @@ application.register("google-map-places", GoogleMapPlacesController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import PropertyItemVisibilityController from "./property_item_visibility_controller"
+application.register("property-item-visibility", PropertyItemVisibilityController)

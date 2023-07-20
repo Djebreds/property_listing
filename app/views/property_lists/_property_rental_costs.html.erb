@@ -1,0 +1,18 @@
+<% if property.property_rentals.present? %>
+  <% property.property_rentals.each do |rental| %>
+    <% if rental.property_rental_costs.present? %>
+      <div class="retal_costs px-0" data-property-item-visibility-target="hideable" <%= 'hidden' if property.property_kinds.present? %>>
+        <h3 class="ps-0"><%= rental_costs_name(rental.rental_type).upcase %></h3>
+        <table class="table table-sm table-hover my-4">
+          <% rental.property_rental_costs.each do |rental_cost| %>
+            <tr>
+              <td class="fw-semibold" scope="row" style="width: 40%"><%= rental_cost.name %></td>
+              <td>:</td>
+              <td class="fw-semibold"><%= rental_cost.value %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

@@ -3,7 +3,7 @@ ActiveAdmin.register Property do
                 :available_on, :latitude, :longitude, :location, :note, images: [],
                 property_facility_attributes: %i[id furniture electric_power water_resource internet parking _destroy],
                 property_general_attributes: %i[id land_size building_size floor_level view style_design surrounding _destroy],
-                property_indoor_attributes: %i[id living_room dinning_room kitchen bedroom ensuite_bathroom maid_room storage guest_toilet _destroy],
+                property_indoor_attributes: %i[id living_room dinning_room kitchen bedroom bathroom ensuite_bathroom maid_room storage guest_toilet _destroy],
                 property_outdoor_attributes: %i[id swimming_pool garden balcony _destroy]
 
   index do
@@ -57,10 +57,10 @@ ActiveAdmin.register Property do
       panel 'General Information' do
         table_for resource.property_general do
           column :land_size do |general|
-            general.land_size_in_meter
+            general.land_size_in_meter if general.present?
           end
           column :building_size do |general|
-            general.building_size_in_meter
+            general.building_size_in_meter if general.present?
           end
           column :floor_level
           column :view
@@ -81,7 +81,7 @@ ActiveAdmin.register Property do
         table_for resource.property_facility do
           column :furniture
           column :electric_power do |facility|
-            facility.electric_power_in_watt
+            facility.electric_power_in_watt if facility.present?
           end
           column :water_resource
           column :internet

@@ -5,7 +5,13 @@ class PropertyKind < ApplicationRecord
 
   accepts_nested_attributes_for :property_kind_costs, allow_destroy: true
 
-  validates :property_id, uniqueness: { scope: :kind }
+  monetize :price_cents, numericality: { greater_than_or_equal_to: 0 }, as: :price
+
+  validates :kind, uniqueness: { scope: :property_id }
 
   enum kind: { freehold: 1, leasehold: 2 }
+
+  def display_price(currency)
+    Money.new(self.price_cents, self.currency).exchange_to(currency).format
+  end
 end

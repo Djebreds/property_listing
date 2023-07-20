@@ -1,0 +1,29 @@
+<div class="position-relative bg-warning" style="padding-top: 15rem">
+  <h1 class="fw-bold position-absolute text-center top-50 start-50 top-md-40 translate-middle">Find Your Dream Property</h1>
+  <%= image_tag 'background.png', class: 'img-fluid opacity-50 w-100 vh-md-40' %>
+  <div class="card position-absolute top-80 top-md-80 rounded-4 vw-90 vw-md-50 start-50 translate-middle border-0 shadow-lg p-3 mb-5 rounded w-auto" >
+    <div class="card-body">
+      <h2 class=" text-dark fs-3 fs-md-2 mb-4 text-center"><%= t('home.search_heading') %></h2>
+      <div class="input-group">
+        <select name="" id="" class="form-select rounded-start-pill">
+          <option><%= t('property.category') %></option>
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+        </select>
+        <select name="" id="" class="form-select">
+          <option><%= t('property.kind') %></option>
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+        </select>
+        <input type="search" class="form-control" placeholder="<%= t('property.search') %>">
+        <button class="btn btn-warning fw-bold rounded-end-pill" type="button" id="button-addon2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

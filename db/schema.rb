@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_16_111033) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_052333) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_111033) do
     t.integer "dinning_room"
     t.integer "kitchen"
     t.integer "bedroom"
+    t.integer "bathroom"
     t.integer "ensuite_bathroom"
     t.integer "maid_room"
     t.integer "storage"
@@ -150,11 +151,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_111033) do
 
   create_table "property_kinds", force: :cascade do |t|
     t.integer "kind", default: 0, null: false
-    t.decimal "price", default: "0.0", null: false
+    t.decimal "price_cents", default: "0.0", null: false
+    t.string "price_currency", default: "IDR", null: false
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["kind"], name: "index_property_kinds_on_kind", unique: true
+    t.string "currency", default: "IDR"
+    t.index ["kind", "property_id"], name: "index_property_kinds_on_kind_and_property_id", unique: true
     t.index ["property_id"], name: "index_property_kinds_on_property_id"
   end
 
@@ -177,12 +180,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_111033) do
 
   create_table "property_rentals", force: :cascade do |t|
     t.integer "rental_type", default: 0, null: false
-    t.decimal "price", default: "0.0", null: false
+    t.decimal "price_cents", default: "0.0", null: false
+    t.string "price_currency", default: "IDR", null: false
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "currency", default: "IDR"
     t.index ["property_id"], name: "index_property_rentals_on_property_id"
-    t.index ["rental_type"], name: "index_property_rentals_on_rental_type", unique: true
+    t.index ["rental_type", "property_id"], name: "index_property_rentals_on_rental_type_and_property_id", unique: true
   end
 
   create_table "property_types", force: :cascade do |t|
@@ -191,6 +196,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_111033) do
     t.datetime "updated_at", null: false
     t.bigint "property_category_id", null: false
     t.index ["property_category_id"], name: "index_property_types_on_property_category_id"
+  end
+
+  create_table "visitors", force: :cascade do |t|
+    t.inet "ip_address"
+    t.bigint "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_visitors_on_property_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -206,4 +219,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_111033) do
   add_foreign_key "property_rental_costs", "property_rentals"
   add_foreign_key "property_rentals", "properties"
   add_foreign_key "property_types", "property_categories"
+  add_foreign_key "visitors", "properties"
 end

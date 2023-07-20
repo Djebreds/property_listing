@@ -5,6 +5,7 @@ class CreatePropertyIndoors < ActiveRecord::Migration[7.0]
       t.integer :dinning_room
       t.integer :kitchen
       t.integer :bedroom
+      t.integer :bathroom
       t.integer :ensuite_bathroom
       t.integer :maid_room
       t.integer :storage

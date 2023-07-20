@@ -54,6 +54,7 @@ active_admin_form_for [:admin, resource], data: {
         ff.input :dinning_room, as: :select
         ff.input :kitchen, as: :select
         ff.input :bedroom
+        ff.input :bathroom
         ff.input :ensuite_bathroom
         ff.input :maid_room, as: :select
         ff.input :storage, as: :select

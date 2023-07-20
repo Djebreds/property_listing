@@ -1,0 +1,53 @@
+<div class="col-md-3">
+  <% if property.property_facility.present? %>
+    <table class="table table-hover table-borderless">
+      <tr>
+        <td class="fw-semibold" colspan="3"><%= t('property.facility_information').upcase %></td>
+      </tr>
+      <tbody class="border-top border-dark">
+        <% if property.property_facility.furniture.present? %>
+          <tr>
+            <td><%= t('property.furniture') %></td>
+            <td>:</td>
+            <td><%= property_furnished(property.property_facility.furniture) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_facility.electric_power.present? %>
+          <tr>
+            <td><%= t('property.electric_power') %></td>
+            <td>:</td>
+            <td><%= property.property_facility.electric_power %></td>
+          </tr>
+        <% end %>
+        <% if property.property_facility.air_conditioner.present? %>
+          <tr>
+            <td><%= t('property.air_conditioner') %></td>
+            <td>:</td>
+            <td><%= property.property_facility.air_conditioner %></td>
+          </tr>
+        <% end %>
+        <% if property.property_facility.water_resource.present? %>
+          <tr>
+            <td><%= t('property.water_resource') %></td>
+            <td>:</td>
+            <td><%= property_water_resource(property.property_facility.water_resource) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_facility.internet.present? %>
+          <tr>
+            <td><%= t('property.internet') %></td>
+            <td>:</td>
+            <td><%= property_internet(property.property_facility.internet) %></td>
+          </tr>
+        <% end %>
+        <% if property.property_facility.parking.present? %>
+          <tr>
+            <td><%= t('property.parking') %></td>
+            <td>:</td>
+            <td><%= property_parking(property.property_facility.parking) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

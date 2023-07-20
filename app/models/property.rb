@@ -4,6 +4,7 @@ class Property < ApplicationRecord
 
   has_many :property_rentals, dependent: :destroy
   has_many :property_kinds, dependent: :destroy
+  has_many :visitors, dependent: :destroy
   has_one :property_facility, dependent: :destroy
   has_one :property_general, dependent: :destroy
   has_one :property_indoor, dependent: :destroy
@@ -19,11 +20,12 @@ class Property < ApplicationRecord
   enum created_by: { admin: 0, marketing_officer: 1 }
 
   reverse_geocoded_by :latitude, :longitude
+  geocoded_by :location
 
   validates :name, :latitude, :longitude, :property_type, :property_category,
             :location, :images, presence: true
 
-  def is_available?
-    available_on > Date.current
+  def counting_viewers
+    viewers = Visitor.distinct.count(:ip_address)
   end
 end

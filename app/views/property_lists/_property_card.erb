@@ -1,0 +1,95 @@
+<div class="card border-0 rounded-none shadow-lg p-0 mb-5 rounded">
+  <div id="caraousel-<%= property.id %>" class="carousel slide ">
+    <div class="nav nav-pills" id="prices-list" role="tablist">
+      <% if property.property_kinds.present? %>
+        <div class="nav-item categories position-absolute start-50 end-0 bottom-0 top-10 justify-content-center p-0 mx-2 d-flex z-1" role="presentation" style="padding-bottom: 1rem">
+          <div class="btn-group h-10 align-items-center">
+            <% property.property_kinds.each do |kind| %>
+              <a href="#" class="btn btn-dark btn-sm text-white opacity-75" id="prices-<%= "#{kind.kind}-#{property.id}" %>-tab" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{kind.kind}-#{property.id}" %>" type="button" role="tab" aria-controls="prices-<%= "#{kind.kind}-#{property.id}" %>" aria-selected="true"><%= kind.kind %></a>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if property.property_rentals.present? %>
+        <div class="nav-item type position-absolute start-0 end-50 bottom-0 top-90 justify-content-center p-0 ms-5 d-flex z-1" role="presentation" style="padding-bottom: 1rem">
+          <div class="btn-group h-10 align-items-center">
+            <% property.property_rentals.each do |rental| %>
+              <a href="#" class="btn btn-dark btn-sm text-white opacity-75" id="prices-<%= "#{rental.rental_type}-#{property.id}" %>-tab" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{rental.rental_type}-#{property.id}" %>" type="button" role="tab" aria-controls="prices-<%= "#{rental.rental_type}-#{property.id}" %>" aria-selected="true"><%= rental.rental_type %></a>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <% if property.images.attached? %>
+      <div class="carousel-inner">
+        <% property.images.limit(3).each_with_index do |image, key| %>
+          <div class="carousel-item <%= 'active' if key == 0  %>">
+            <%= image_tag image, class: 'card-img-top', height: 294 %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#caraousel-<%= property.id %>" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-warning rounded-2" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#caraousel-<%= property.id %>" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-warning rounded-2" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="card-body position-relative">
+    <%= link_to truncate(property.name), property_path(property.property_category.name.downcase.parameterize(separator: '-'), property.property_type.name.downcase, property.id, locale: locale), class: 'fw-bold stretched-link text-decoration-none text-dark fs-4' %>
+    <div class="tab-content" id="prices-tabContent">
+      <% if property.property_kinds.present? %>
+        <% property.property_kinds.each do |kind| %>
+          <div class="tab-pane fade show active" id="prices-<%= "#{kind.kind}-#{property.id}" %>" role="tabpanel" aria-labelledby="pills-<%= "#{kind.kind}-#{property.id}" %>-tab" tabindex="0">
+            <h5 class="fw-semibold"><%= kind.display_price(@currency) %></h5>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if property.property_rentals.present? %>
+        <% property.property_rentals.each do |rental| %>
+          <div class="tab-pane fade <%= 'show active' if property.property_kinds.nil? %>" id="prices-<%= "#{rental.rental_type}-#{property.id}" %>" role="tabpanel" aria-labelledby="pills-<%= "#{rental.rental_type}-#{property.id}" %>-tab" tabindex="0">
+            <h5 class="fw-semibold"><%= rental.display_price(@currency) %></h5>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <p class="mb-0 text-secondary"><%= truncate(property.location) %></p>
+    <hr>
+    <div class="detail d-flex gap-3">
+      <% if property.property_indoor.present? %>
+        <div class="bedroom">
+          <div class="icon d-flex align-items-center gap-2">
+            <%= image_tag 'bedroom_icon.png', width: 20, height: 20 %>
+            <p class="fw-bold mb-0 fs-5"><%= property.property_indoor.bedroom if property.property_indoor.bedroom.present? %></p>
+          </div>
+          <span class="fw-medium text-muted"><small><%= t('property.bedroom') %></small></span>
+        </div>
+        <div class="bathroom">
+          <div class="icon d-flex align-items-center gap-2">
+            <%= image_tag 'bath_room_icon.png', width: 20, height: 20 %>
+            <p class="fw-bold mb-0 fs-5"><%= property.property_indoor.bathroom if property.property_indoor.bathroom.present? %></p>
+          </div>
+          <span class="fw-medium text-muted"><small><%= t('property.bathroom') %></small></span>
+        </div>
+      <% end %>
+      <% if property.property_general.present? %>
+        <div class="building-size">
+          <div class="icon d-flex align-items-center gap-2">
+            <%= image_tag 'building_size_icon.png', width: 20, height: 20 %>
+            <p class="fw-bold mb-0 fs-5"><%= property.property_general.building_size_in_meter if property.property_general.building_size.present? %></p>
+          </div>
+          <span class="fw-medium text-muted"><small><%= t('property.building_size') %></small></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

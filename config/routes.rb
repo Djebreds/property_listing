@@ -8,9 +8,10 @@ Rails.application.routes.draw do
 
   scope '(:locale)' do
     root to: 'home#index'
-    get '/about', to: 'home#about'
-    get '/contact', to: 'home#contact'
-    get '/locale/set', to: 'locale#set'
-    post '/locale/set', to: 'locale#set'
+    get 'about', to: 'home#about'
+    get 'contact', to: 'home#contact'
+    get 'properties', to: 'property_lists#index'
+    get 'properties/:property_category/:property_type/:id', to: 'property_lists#detail', as: :property
+    post 'set_currency', to: 'currencies#set_currency', as: :set_currency
   end
 end

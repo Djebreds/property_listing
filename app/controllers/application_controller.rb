@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
-  before_action :set_locale
-  after_action :verify_authorized, except: %i[index about contact], unless: -> { bypass_pundit? }
+  before_action :set_locale, :set_currency
+  after_action :verify_authorized, except: %i[index about contact set_currency detail], unless: -> { bypass_pundit? }
 
   def set_locale
     locale = params[:locale].to_s.strip.to_sym
@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: I18n.locale }
+  end
+
+  def set_currency
+    @currency = session[:currency] || 'IDR'
   end
 
   private
