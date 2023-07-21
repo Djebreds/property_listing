@@ -1,0 +1,21 @@
+<main>
+  <%= render 'layouts/navbar' %>
+    <section class="container-fluid vh-auto p-0 m-0" style="padding-top: 15rem">
+      <%= render 'property_header' %>
+      <div class="container">
+        <div class="row">
+          <% if @properties.present? %>
+            <% @properties.each do |property| %>
+              <div class="col-md-4">
+                <%= render 'property_lists/property_card', property: property %>
+              </div>
+            <% end %>
+          <% else %>
+            <h4 class="text-center mt-10"><%= t('property.not_found_sorry') %></h4>
+            <h2 class="text-center mb-10"><%= t('property.not_found') %></h2>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <%= render 'layouts/footer' %>
+</main>

@@ -28,4 +28,8 @@ class Property < ApplicationRecord
   def counting_viewers
     viewers = Visitor.distinct.count(:ip_address)
   end
+
+  def self.top_properties(limit = 3)
+    joins(:visitors).group(:id).order(Arel.sql('COUNT(visitors.id) DESC')).limit(limit)
+  end
 end

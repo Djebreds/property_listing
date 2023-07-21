@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import GetAllPropertyPlacesController from "./get_all_property_places_controller"
+application.register("get-all-property-places", GetAllPropertyPlacesController)
+
 import GetPlaceGoogleMapsController from "./get_place_google_maps_controller"
 application.register("get-place-google-maps", GetPlaceGoogleMapsController)
 

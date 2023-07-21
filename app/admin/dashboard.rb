@@ -2,32 +2,26 @@
 ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
-  content title: proc { I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+  content title: proc { I18n.t('active_admin.dashboard') } do
+    columns do
+      column do
+        panel 'Visitor Based on Property' do
+          column_chart Property.joins(:visitors).group(:name).distinct.count(:property_id)
+        end
+      end
+
+      column do
+        panel 'All Property location' do
+          div id: 'map', data: {
+            controller: 'get-all-property-places',
+            action: "google-maps-callback@window->get-all-property-places#initMap",
+            target: 'get-all-property-places.map'
+          }, style: 'width: 100%; height: 400px;' do
+            div data: { target: 'get-all-property-places.latitude', 'get-all-property-places-latitude-value': Property.all.pluck(:latitude).to_json }
+            div data: { target: 'get-all-property-places.longitude', 'get-all-property-places-longitude-value': Property.all.pluck(:longitude).to_json }
+          end
+        end
       end
     end
-
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
-
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
-  end # content
+  end
 end
