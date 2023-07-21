@@ -83,6 +83,9 @@ test:
 #
 production:
   <<: *default
-  database: property_listing_production
-  username: property_listing
-  password: <%= ENV["PROPERTY_LISTING_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['PGDATABASE'] %>
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+  host: <%= ENV['PGHOST'] %>
+  port: <%= ENV['PGPORT'] %>

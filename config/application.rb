@@ -12,6 +12,7 @@ module PropertyListing
     config.load_defaults 7.0
 
     config.google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
