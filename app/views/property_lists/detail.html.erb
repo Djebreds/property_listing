@@ -59,29 +59,39 @@
                 <h6><%= number_to_human(@viewers, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }) %> <%= t('property.viewers') %></h6>
               </div>
 
-              <% if @property.property_kinds.present? %>
-                <% @property.property_kinds.each do |kind| %>
-                  <h2 class="fw-bold my-4" data-property-item-visibility-target="hideable" <%= 'hidden' if @property.property_rentals.present? %>><%= kind.display_price(@currency) %></h2>
+              <div class="tab-content">
+                <% if @property.property_kinds.present? %>
+                  <% @property.property_kinds.each_with_index do |kind, index| %>
+                    <div class="tab-pane fade <%= 'show active' if index == 0 %> kind-p-<%= kind.id %>">
+                      <h2 class="fw-bold my-4"><%= kind.display_price(@currency) %></h2>
+                    </div>
+                  <% end %>
                 <% end %>
-              <% end %>
+                <% if @property.property_rentals.present? %>
+                  <% @property.property_rentals.each_with_index do |rental, index| %>
+                    <div class="tab-pane fade <%= 'show active' if index == 0 %> rental-p-<%= rental.id %>">
+                      <h2 class="fw-bold my-4"><%= rental.display_price(@currency) %></h2>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
 
-              <% if @property.property_rentals.present? %>
-                <% @property.property_rentals.each do |rental| %>
-                  <h2 class="fw-bold my-4" data-property-item-visibility-target="hideable" <%= 'hidden' if @property.property_kinds.present? %>><%= rental.display_price(@currency) %><small>/<%= rental_type_name(rental.rental_type) %></small></h2>
+              <ul id="myTab" class="nav nav-pills" role="tablist">
+                <% if @property.property_kinds.present? %>
+                  <% @property.property_kinds.each_with_index do |kind, index| %>
+                    <li class="nav-item">
+                      <a class="btn btn-warning me-2 <%= 'active' if index == 0 %>" href="#tab-<%= kind.id %>" data-bs-target=".kind-p-<%= kind.id %>, .kind-c-<%= kind.id %>" data-bs-toggle="pill"><%= kind.kind.capitalize %></a>
+                    </li>
+                  <% end %>
                 <% end %>
-              <% end %>
-
-              <% if @property.property_kinds.present? %>
-                <% @property.property_kinds.each do |kind| %>
-                  <button type="button" class="btn btn-warning" data-action="property-item-visibility#toggleTargets"><%= kind.kind.capitalize %></button>
+                <% if @property.property_rentals.present? %>
+                  <% @property.property_rentals.each_with_index do |rental, index| %>
+                    <li class="nav-item">
+                      <a class="btn btn-warning me-2 <%= 'active' if index == 0 %>" href="#tab-<%= rental.id %>" data-bs-target=".rental-p-<%= rental.id %>, .rental-c-<%= rental.id %>" data-bs-toggle="pill"><%= rental.rental_type.capitalize %></a>
+                    </li>
+                  <% end %>
                 <% end %>
-              <% end %>
-
-              <% if @property.property_rentals.present? %>
-                <% @property.property_rentals.each do |rental| %>
-                  <button type="button" class="btn btn-warning" data-action="property-item-visibility#toggleTargets"><%= rental.rental_type.capitalize %></button>
-                <% end %>
-              <% end %>
+              </ul>
 
               <hr>
 
@@ -173,5 +183,6 @@
       </div>
     </div>
   </section>
+    <%= javascript_include_tag 'custom_tabs' %>
   <%= render 'layouts/footer' %>
 </main>

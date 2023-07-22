@@ -1,18 +1,22 @@
 <% if property.property_kinds.present? %>
-  <% property.property_kinds.each do |kind| %>
-    <% if kind.property_kind_costs.present? %>
-      <div class="kind_costs px-0" data-property-item-visibility-target="hideable" <%= 'hidden' if !property.property_rentals.present? %>>
-        <h3 class="ps-0"><%= kind_costs_name(kind.kind).upcase %></h3>
-        <table class="table table-sm table-hover my-4">
-        <% kind.property_kind_costs.each do |kind_cost| %>
-            <tr>
-              <td class="fw-semibold" scope="row" style="width: 40%"><%= kind_cost.name %></td>
-              <td>:</td>
-              <td class="fw-semibold"><%= kind_cost.value %></td>
-            </tr>
-        <% end %>
-        </table>
-      </div>
+  <div class="tab-content">
+    <% property.property_kinds.each_with_index do |kind, index| %>
+      <% if kind.property_kind_costs.present? %>
+        <div class="tab-pane fade <%= 'show active' if index == 0 %> kind-c-<%= kind.id %>">
+          <div class="kind_costs px-0" >
+            <h3 class="ps-0"><%= kind_costs_name(kind.kind).upcase %></h3>
+            <table class="table table-sm table-hover my-4">
+            <% kind.property_kind_costs.each do |kind_cost| %>
+              <tr>
+                <td class="fw-semibold" scope="row" style="width: 40%"><%= kind_cost.name %></td>
+                <td>:</td>
+                <td class="fw-semibold"><%= kind_cost.value %></td>
+              </tr>
+            <% end %>
+            </table>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

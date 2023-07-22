@@ -117,9 +117,10 @@ ActiveAdmin.register Property do
         div id: 'map', data: {
                       controller: 'get-place-google-maps',
                       action: "google-maps-callback@window->get-place-google-maps#initMap",
-                      target: 'get-place-google-maps.latitude', 'get-place-google-maps-latitude-value': resource.latitude,
-                      target: 'get-place-google-maps.longitude', 'get-place-google-maps-longitude-value': resource.longitude,
-                      target: 'get-place-google-maps.map' }, style: 'width: 100%; height: 400px;'
+                      target: 'get-place-google-maps.map' }, style: 'width: 100%; height: 400px;' do
+                        div data: { target: 'get-place-google-maps.latitude', 'get-place-google-maps-latitude-value': resource.latitude }
+                        div data: { target: 'get-place-google-maps.longitude', 'get-place-google-maps-longitude-value': resource.longitude }
+                      end
       end
     end
   end
