@@ -2,13 +2,14 @@
   <%= render 'layouts/navbar' %>
     <section class="container-fluid vh-auto p-0 m-0" style="padding-top: 15rem">
       <%= render 'property_header' %>
-      <div class="container">
+      <div class="container mt-10 mt-md-0 my-0 my-md-3">
         <div class="row">
           <% @properties.each do |property| %>
             <div class="col-md-4">
               <%= render 'property_lists/property_card', property: property %>
             </div>
           <% end %>
+          <%= paginate @properties %>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 <div class="card-body">
-  <h2 class=" text-dark fs-3 fs-md-2 mb-4 text-center"><%= t('home.search_heading') %></h2>
+ <h2 class=" text-dark fs-5 fs-md-2 mb-4 text-center"><%= t('home.search_heading') %></h2>
   <%= form_with url: properties_search_path, class: 'input-group', method: "get" do |f| %>
     <%= select_tag :property_category, options_for_select(
                   [[t('property.search_category'), ''], [t('footer.real_estate_for_sale'), "1"], [t('footer.long_term_rentals'), '2']]), class: "form-select mb-3 rounded-start-pill" %>

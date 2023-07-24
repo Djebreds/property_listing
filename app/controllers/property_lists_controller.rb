@@ -3,7 +3,7 @@ class PropertyListsController < ApplicationController
     @properties = Property.includes(
                             property_rentals: :property_rental_costs,
                             property_kinds: :property_kind_costs)
-                          .with_attached_images
+                          .with_attached_images.page(params[:page]).per(1)
   end
 
   def detail
@@ -40,8 +40,8 @@ class PropertyListsController < ApplicationController
                             property_kinds: :property_kind_costs)
                           .with_attached_images
 
-    @properties = @properties.where(property_category: property_category) if property_category.present?
-    @properties = @properties.where(property_type: property_type) if property_type.present?
-    @properties = @properties.where("location ILIKE ?", "%#{location}%") if location.present?
+    @properties = @properties.where(property_category: property_category).page(params[:page]).per(15) if property_category.present?
+    @properties = @properties.where(property_type: property_type).page(params[:page]).per(15) if property_type.present?
+    @properties = @properties.where("location ILIKE ?", "%#{location}%").page(params[:page]).per(15) if location.present?
   end
 end

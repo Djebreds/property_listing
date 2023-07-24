@@ -3,21 +3,21 @@
     <div class="card-body">
       <div class="container-fluid">
         <div class="row justify-content-center justify-content-md-between align-items-center">
-          <div class="col-md-6 d-block d-md-none order-last order-md-first mt-4">
+          <div class="col d-block d-md-none mt-4">
             <h2 class="fw-bold" style="font-size: 30px"><%= t('home.top_property_header') %></h2>
-            <p class="fs-5 my-5"><%= t('home.top_property_description') %></p>
-            <button class="btn btn-warning text-dark rounded-5 fw-bold py-2 px-4"><%= t('home.top_property_find_property') %></button>
+            <p class="fs-5 mt-5 mb-3 mb-md-5"><%= t('home.top_property_description') %></p>
+            <%= link_to t('home.top_property_find_property'), properties_path, class: 'btn btn-warning text-dark rounded-5 fw-bold py-2 px-4' %>
           </div>
 
-           <div class="col-md-6 d-none d-md-block">
+          <div class="col-md-6 d-none d-md-block">
             <h2 class="fw-bold" style="font-size: 50px"><%= t('home.top_property_header') %></h2>
-            <p class="fs-5 my-5"><%= t('home.top_property_description') %></p>
-            <button class="btn btn-warning text-dark rounded-5 fw-bold py-2 px-4"><%= t('home.top_property_find_property') %></button>
+            <p class="fs-5 mt-5 mb-3 mb-md-5"><%= t('home.top_property_description') %></p>
+            <%= link_to t('home.top_property_find_property'), properties_path, class: 'btn btn-warning text-dark rounded-5 fw-bold py-2 px-4' %>
           </div>
 
-          <div class="col-md-6 mx-0">
+          <div class="col-md-6 mx-0 px-0">
             <div id="carousel-top-properties" class="carousel slide mt-2 rounded-5">
-              <div class="carousel-inner rounded px-md-10 px-4 py-3">
+              <div class="carousel-inner rounded px-md-10 px-2 py-3">
                 <% @top_properties.each_with_index do |property, index| %>
                 <div class="carousel-item rounded-3 <%= 'active' if index == 0 %>">
                   <%= render 'property_lists/property_card_large', property: property %>

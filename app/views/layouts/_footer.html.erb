@@ -12,16 +12,16 @@
       <div class="col-md-2 mx-2">
         <div class="d-grid">
           <h4 class="fw-bold"><%= t('footer.property_category') %></h4>
-          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.real_estate_for_sale') %></a>
-          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.long_term_rentals') %></a>
+          <%= link_to t('footer.real_estate_for_sale'), properties_search_path(property_category: 1) , class: 'text-decoration-none text-white my-2' %>
+          <%= link_to t('footer.long_term_rentals'), properties_search_path(property_category: 2) , class: 'text-decoration-none text-white my-2' %>
         </div>
       </div>
       <div class="col-md-2 mx-2">
         <div class="d-grid">
           <h4 class="fw-bold"><%= t('footer.property_type') %></h4>
-          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.villa') %></a>
-          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.land') %></a>
-          <a href="" class="text-decoration-none text-white my-2"><%= t('footer.other') %></a>
+          <%= link_to t('footer.villa'), properties_search_path(property_type: 1) , class: 'text-decoration-none text-white my-2' %>
+          <%= link_to t('footer.land'), properties_search_path(property_type: 2) , class: 'text-decoration-none text-white my-2' %>
+          <%= link_to t('footer.other'), properties_search_path(property_type: 3) , class: 'text-decoration-none text-white my-2' %>
         </div>
       </div>
       <div class="col-md-2 mx-2">

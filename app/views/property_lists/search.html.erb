@@ -2,7 +2,7 @@
   <%= render 'layouts/navbar' %>
     <section class="container-fluid vh-auto p-0 m-0" style="padding-top: 15rem">
       <%= render 'property_header' %>
-      <div class="container">
+      <div class="container mt-10 mt-md-0">
         <div class="row">
           <% if @properties.present? %>
             <% @properties.each do |property| %>
@@ -14,6 +14,7 @@
             <h4 class="text-center mt-10"><%= t('property.not_found_sorry') %></h4>
             <h2 class="text-center mb-10"><%= t('property.not_found') %></h2>
           <% end %>
+          <%= paginate @properties %>
         </div>
       </div>
     </section>

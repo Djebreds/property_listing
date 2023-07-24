@@ -1,10 +1,10 @@
 <section class="container-fluid position-relative pt-5 vh-90 vh-md-90" style="background-color: #000">
-  <%= image_tag 'hero_section.jpg', class: 'position-absolute text-center top-70 start-50 top-md-60 translate-middle img-fluid opacity-50' %>
-  <header class="position-absolute text-center top-50 start-50 top-md-50 translate-middle">
+  <%= image_tag 'hero_section.jpg', class: 'position-absolute text-center top-50 start-50 top-md-60 translate-middle img-fluid opacity-50' %>
+  <header class="position-absolute text-center w-100 top-40 start-50 top-md-50 translate-middle">
     <h4 class="text-white fs-5 fs-md-4"><%= t('home.subheading') %></h4>
     <h1 class="fw-bold text-white fs-2 fs-md-1"><%= t('home.heading') %></h1>
   </header>
-  <div class="card position-absolute top-80 top-md-80 rounded-4 vw-90 vw-md-50 start-50 translate-middle border-0 shadow-lg p-3 mb-5 rounded w-auto" >
+  <div class="card position-absolute top-70 top-md-80 rounded-4 vw-90 vw-md-50 start-50 translate-middle border-0 shadow-lg p-3 mb-5 rounded w-auto" >
     <%= render 'property_lists/property_search_form' %>
   </div>
 </section>

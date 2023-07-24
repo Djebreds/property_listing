@@ -348,6 +348,7 @@ DEPENDENCIES
   gmaps4rails
   jbuilder
   jsbundling-rails
+  kaminari
   kaminari-i18n
   money-rails
   pg (~> 1.1)

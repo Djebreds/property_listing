@@ -2,7 +2,7 @@
   <div id="caraousel-<%= property.id %>-large" class="carousel slide ">
     <div class="nav nav-pills" id="prices-list" role="tablist">
       <% if property.property_kinds.present? %>
-        <div class="nav-item categories position-absolute start-70 end-0 bottom-0 top-10 justify-content-center p-0 mx-2 d-flex z-1" role="presentation" style="padding-bottom: 1rem">
+        <div class="nav-item categories position-absolute start-50 start-md-70 end-0 bottom-0 top-10 justify-content-center p-0 mx-2 d-flex z-1" role="presentation" style="padding-bottom: 1rem">
           <div class="btn-group h-10 align-items-center">
             <% property.property_kinds.each_with_index do |kind, index| %>
               <a href="#" class="btn btn-dark btn-sm text-white opacity-75 <%= 'active' if index == 0 %>" id="prices-<%= "#{kind.kind}-#{property.id}" %>-tab-large" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{kind.kind}-#{property.id}" %>-large" type="button" role="tab" aria-controls="prices-<%= "#{kind.kind}-#{property.id}" %>-large" aria-selected="true"><%= kind.kind %></a>
