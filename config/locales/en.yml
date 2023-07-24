@@ -47,6 +47,11 @@ en:
     last_name: "Last Name"
     description: "Description"
     send: "Send"
+    meta_description_tags: "The most popular property list website in the world."
+    meta_search_title: "Search Property"
+    meta_search_description: "Find your dream property with trusted"
+    meta_property_title: "List property trusted & selected here"
+    meta_property_description: "Find the right property based on your interest"
   footer:
     property_category: "Categories"
     real_estate_for_sale: "Real Estate For Sale"

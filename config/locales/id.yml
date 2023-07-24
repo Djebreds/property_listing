@@ -16,6 +16,11 @@ id:
     last_name: "Nama Belakang"
     description: "Deskripsi"
     send: "Kirimkan"
+    meta_description_tags: "Website properti list yang paling populer didunia."
+    meta_search_title: "Cari Properti"
+    meta_search_description: "Temukan properti idaman dan impianmu disini terpercaya"
+    meta_property_title: "Kumpulan Property Terpilih dan Terpecaya."
+    meta_property_description: "Temukan property yang paling sesuai dengan kemauan anda"
   footer:
     property_category: "Kategori"
     real_estate_for_sale: "Real estat Dijual"

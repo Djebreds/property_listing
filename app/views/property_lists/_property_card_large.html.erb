@@ -4,7 +4,7 @@
       <% if property.property_kinds.present? %>
         <div class="nav-item categories position-absolute start-50 start-md-70 end-0 bottom-0 top-10 justify-content-center p-0 mx-2 d-flex z-1" role="presentation" style="padding-bottom: 1rem">
           <div class="btn-group h-10 align-items-center">
-            <% property.property_kinds.each_with_index do |kind, index| %>
+            <% property.property_kinds.order(:kind).each_with_index do |kind, index| %>
               <a href="#" class="btn btn-dark btn-sm text-white opacity-75 <%= 'active' if index == 0 %>" id="prices-<%= "#{kind.kind}-#{property.id}" %>-tab-large" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{kind.kind}-#{property.id}" %>-large" type="button" role="tab" aria-controls="prices-<%= "#{kind.kind}-#{property.id}" %>-large" aria-selected="true"><%= kind.kind %></a>
             <% end %>
           </div>
@@ -14,8 +14,8 @@
       <% if property.property_rentals.present? %>
         <div class="nav-item type position-absolute start-0 end-50 bottom-0 top-90 justify-content-center p-0 ms-5 d-flex z-1" role="presentation" style="padding-bottom: 1rem">
           <div class="btn-group h-10 align-items-center">
-            <% property.property_rentals.each_with_index do |rental, index| %>
-              <a href="#" class="btn btn-dark btn-sm text-white opacity-75 <%= 'active' if index == 0 %>" id="prices-<%= "#{rental.rental_type}-#{property.id}" %>-tab-large" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{rental.rental_type}-#{property.id}" %>-large" type="button" role="tab" aria-controls="prices-<%= "#{rental.rental_type}-#{property.id}" %>-large" aria-selected="true"><%= rental.rental_type %></a>
+            <% property.property_rentals.order(:rental_type).each_with_index do |rental, index| %>
+              <a href="#" class="btn btn-dark btn-sm text-white opacity-75 <%= 'active' if !property.property_kinds.present? && index == 0 %>" id="prices-<%= "#{rental.rental_type}-#{property.id}" %>-tab-large" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{rental.rental_type}-#{property.id}" %>-large" type="button" role="tab" aria-controls="prices-<%= "#{rental.rental_type}-#{property.id}" %>-large" aria-selected="true"><%= rental.rental_type %></a>
             <% end %>
           </div>
         </div>
@@ -46,7 +46,7 @@
 
       <% if property.property_rentals.present? %>
         <% property.property_rentals.each_with_index do |rental, index| %>
-          <div class="tab-pane fade <%= 'show active' if index == 0 %>" id="prices-<%= "#{rental.rental_type}-#{property.id}" %>-large" role="tabpanel" aria-labelledby="pills-<%= "#{rental.rental_type}-#{property.id}" %>-tab-large" tabindex="0">
+          <div class="tab-pane fade <%= 'show active' if !property.property_kinds.present? && index == 0 %>" id="prices-<%= "#{rental.rental_type}-#{property.id}" %>-large" role="tabpanel" aria-labelledby="pills-<%= "#{rental.rental_type}-#{property.id}" %>-tab-large" tabindex="0">
             <h5 class="fw-semibold"><%= rental.display_price(@currency) %></h5>
           </div>
         <% end %>

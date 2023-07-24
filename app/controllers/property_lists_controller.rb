@@ -3,7 +3,8 @@ class PropertyListsController < ApplicationController
     @properties = Property.includes(
                             property_rentals: :property_rental_costs,
                             property_kinds: :property_kind_costs)
-                          .with_attached_images.page(params[:page]).per(1)
+                          .order(created_at: :desc)
+                          .with_attached_images.page(params[:page]).per(15)
   end
 
   def detail
@@ -38,6 +39,7 @@ class PropertyListsController < ApplicationController
     @properties = Property.includes(
                             property_rentals: :property_rental_costs,
                             property_kinds: :property_kind_costs)
+                          .order(created_at: :desc)
                           .with_attached_images
 
     @properties = @properties.where(property_category: property_category).page(params[:page]).per(15) if property_category.present?

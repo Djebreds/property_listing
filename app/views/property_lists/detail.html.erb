@@ -1,3 +1,5 @@
+<% set_meta_tags title: "#{@property.property_category.name} - #{@property.property_type.name} - #{@property.name}", description: "#{@property.description}" %>
+
 <main>
   <%= render 'layouts/navbar' %>
   <section class="container-fluid vh-auto p-0 m-0">
@@ -61,15 +63,15 @@
 
               <div class="tab-content">
                 <% if @property.property_kinds.present? %>
-                  <% @property.property_kinds.each_with_index do |kind, index| %>
+                  <% @property.property_kinds.order(:kind).each_with_index do |kind, index| %>
                     <div class="tab-pane fade <%= 'show active' if index == 0 %> kind-p-<%= kind.id %>">
                       <h2 class="fw-bold my-4"><%= kind.display_price(@currency) %></h2>
                     </div>
                   <% end %>
                 <% end %>
                 <% if @property.property_rentals.present? %>
-                  <% @property.property_rentals.each_with_index do |rental, index| %>
-                    <div class="tab-pane fade <%= 'show active' if index == 0 %> rental-p-<%= rental.id %>">
+                  <% @property.property_rentals.order(:rental_type).each_with_index do |rental, index| %>
+                    <div class="tab-pane fade <%= 'show active' if !@property.property_kinds.present? && index == 0 %> rental-p-<%= rental.id %>">
                       <h2 class="fw-bold my-4"><%= rental.display_price(@currency) %></h2>
                     </div>
                   <% end %>
@@ -78,16 +80,16 @@
 
               <ul id="myTab" class="nav nav-pills" role="tablist">
                 <% if @property.property_kinds.present? %>
-                  <% @property.property_kinds.each_with_index do |kind, index| %>
+                  <% @property.property_kinds.order(:kind).each_with_index do |kind, index| %>
                     <li class="nav-item">
                       <a class="btn btn-warning me-2 <%= 'active' if index == 0 %>" href="#tab-<%= kind.id %>" data-bs-target=".kind-p-<%= kind.id %>, .kind-c-<%= kind.id %>" data-bs-toggle="pill"><%= kind.kind.capitalize %></a>
                     </li>
                   <% end %>
                 <% end %>
                 <% if @property.property_rentals.present? %>
-                  <% @property.property_rentals.each_with_index do |rental, index| %>
+                  <% @property.property_rentals.order(:rental_type).each_with_index do |rental, index| %>
                     <li class="nav-item">
-                      <a class="btn btn-warning me-2 <%= 'active' if index == 0 %>" href="#tab-<%= rental.id %>" data-bs-target=".rental-p-<%= rental.id %>, .rental-c-<%= rental.id %>" data-bs-toggle="pill"><%= rental.rental_type.capitalize %></a>
+                      <a class="btn btn-warning me-2 <%= 'active' if !@property.property_kinds.present? && index == 0 %>" href="#tab-<%= rental.id %>" data-bs-target=".rental-p-<%= rental.id %>, .rental-c-<%= rental.id %>" data-bs-toggle="pill"><%= rental.rental_type.capitalize %></a>
                     </li>
                   <% end %>
                 <% end %>
@@ -176,7 +178,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-4">
         <% if @similar_properties.present? %>
           <h2 class="fw-semibold my-4 text-center"><%= t('property.similar_properties') %></h2>
           <%= render 'property_similarity', similar_properties: @similar_properties %>

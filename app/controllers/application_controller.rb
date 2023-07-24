@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     @currency = session[:currency] || 'IDR'
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   private
 
   def bypass_pundit?

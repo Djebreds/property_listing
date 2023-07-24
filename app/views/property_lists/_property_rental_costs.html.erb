@@ -1,8 +1,8 @@
 <% if property.property_rentals.present? %>
   <div class="tab-content">
-    <% property.property_rentals.each_with_index do |rental, index| %>
+    <% property.property_rentals.order(:rental_type).each_with_index do |rental, index| %>
       <% if rental.property_rental_costs.present? %>
-          <div class="tab-pane fade <%= 'show active' if index == 0 %> rental-c-<%= rental.id %>">
+          <div class="tab-pane fade <%= 'show active' if !@property.property_kinds.present? && index == 0 %> rental-c-<%= rental.id %>">
             <div class="retal_costs px-0">
               <h3 class="ps-0"><%= rental_costs_name(rental.rental_type).upcase %></h3>
               <table class="table table-sm table-hover my-4">
