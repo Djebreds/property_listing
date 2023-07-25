@@ -1,7 +1,7 @@
 
 unless AdminUser.any?
-  AdminUser.create!(email: 'admin@dadang.com', password: 'password', password_confirmation: 'password', role: :admin)
-  AdminUser.create!(email: 'marketing@dadang.com', password: 'password', password_confirmation: 'password', role: :marketing_officer)
+  AdminUser.create!(email: 'admin@propertylist.com', password: 'password', password_confirmation: 'password', role: :admin)
+  AdminUser.create!(email: 'marketing@propertylist.com', password: 'password', password_confirmation: 'password', role: :marketing_officer)
 end
 
 unless PropertyCategory.any?

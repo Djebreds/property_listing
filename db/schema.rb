@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2023_07_20_072603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "timescaledb"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"

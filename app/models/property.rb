@@ -26,7 +26,7 @@ class Property < ApplicationRecord
             :location, :images, presence: true
 
   def counting_viewers
-    viewers = Visitor.distinct.count(:ip_address)
+    self.visitors.distinct.count(:ip_address)
   end
 
   def self.top_properties(limit = 3)

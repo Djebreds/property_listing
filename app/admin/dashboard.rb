@@ -6,7 +6,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel 'Visitor Based on Property' do
-          column_chart Property.joins(:visitors).group(:name).distinct.count(:property_id)
+          column_chart Property.joins(:visitors).group(:name).distinct.count(:ip_address)
         end
       end
 
