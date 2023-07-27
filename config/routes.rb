@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'properties/:property_category/:property_type/:id', to: 'property_lists#detail', as: :property
     get 'properties/search', to: 'property_lists#search', as: :properties_search
     post 'set_currency', to: 'currencies#set_currency', as: :set_currency
-    post 'property_request/send_request', to: 'property_request#send_request'
+    get 'property-request/new-request', to: 'property_request#new_request'
+    post 'property-request/send-request', to: 'property_request#send_request'
   end
 end

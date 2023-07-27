@@ -1,5 +1,5 @@
 <% if property.property_kinds.present? %>
-  <div class="tab-content">
+  <div class="tab-content px-0">
     <% property.property_kinds.order(:kind).each_with_index do |kind, index| %>
       <% if kind.property_kind_costs.present? %>
         <div class="tab-pane fade <%= 'show active' if index == 0 %> kind-c-<%= kind.id %>">

@@ -1,0 +1,108 @@
+<%= form_for property_request, url: property_request_send_request_path, data: { turbo: false } do |f| %>
+  <div class="mb-3">
+    <% invalid = property_request.errors.include?(:first_name) %>
+    <%= f.label t('property_request.first_name'), class: 'form-label fw-semibold' %>
+    <%= f.text_field :first_name, class: "form-control px-3 rounded-pill shadow-sm p-2 mb-2 rounded #{'is-invalid' if invalid}", required: true %>
+    <% if invalid %>
+      <div class="invalid-feedback fw-semibold d-block">
+        <% property_request.errors.full_messages_for(:first_name).each do |error| %>
+          <%= error %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% invalid = property_request.errors.include?(:last_name) %>
+    <%= f.label t('property_request.last_name'), class: 'form-label fw-semibold' %>
+    <%= f.text_field :last_name, class: "form-control px-3 rounded-pill shadow-sm p-2 mb-2 rounded #{'is-invalid' if invalid}", required: true %>
+    <% if invalid %>
+      <div class="invalid-feedback fw-semibold d-block">
+        <% property_request.errors.full_messages_for(:last_name).each do |error| %>
+          <%= error %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% invalid = property_request.errors.include?(:email) %>
+    <%= f.label t('property_request.email'), class: 'form-label fw-semibold' %>
+    <%= f.email_field :email, class: "form-control px-3 rounded-pill shadow-sm p-2 mb-2 rounded #{'is-invalid' if invalid}", required: true %>
+    <% if invalid %>
+      <div class="invalid-feedback fw-semibold d-block">
+        <% property_request.errors.full_messages_for(:email).each do |error| %>
+          <%= error %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% invalid = property_request.errors.include?(:phone) %>
+    <%= f.label t('property_request.phone'), class: 'form-label fw-semibold' %>
+    <%= f.telephone_field :phone, class: "form-control px-3 rounded-pill shadow-sm p-2 mb-2 rounded #{'is-invalid' if invalid}", required: true %>
+    <% if invalid %>
+      <div class="invalid-feedback fw-semibold d-block">
+        <% property_request.errors.full_messages_for(:phone).each do |error| %>
+          <%= error %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% invalid = property_request.errors.include?(:property_category) %>
+    <%= f.label t('footer.property_category'), class: 'form-label fw-semibold d-grid' %>
+    <% PropertyCategory.all.each do |category| %>
+      <div class="form-check form-check-inline">
+        <%= f.check_box :property_category, { multiple: true, id: category.name, class: "form-check-input shadow-sm p-2 mb-2 rounded" }, category.name, nil  %>
+        <%= f.label :property_category, category.name, class: "form-check-label", for: category.name %>
+      </div>
+    <% end %>
+    <% if invalid %>
+      <div class="invalid-feedback fw-semibold d-block">
+        <% property_request.errors.full_messages_for(:property_category).each do |error| %>
+          <%= error %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% invalid = property_request.errors.include?(:property_type) %>
+    <%= f.label t('footer.property_type'), class: 'form-label fw-semibold d-grid' %>
+    <% property_types.each do |type| %>
+      <div class="form-check form-check-inline">
+        <%= f.check_box :property_type, { multiple: true, id: type, class: "form-check-input shadow-sm p-2 mb-2 rounded" }, type, nil %>
+        <%= f.label :property_type, type.capitalize, class: "form-check-label", for: type %>
+      </div>
+    <% end %>
+    <% if invalid %>
+      <div class="invalid-feedback fw-semibold d-block">
+        <% property_request.errors.full_messages_for(:property_type).each do |error| %>
+          <%= error %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% invalid = property_request.errors.include?(:description) %>
+    <%= f.label t('property_request.description'), class: 'form-label fw-semibold' %>
+    <%= f.text_area :description, size: "70x5", class: 'form-control px-3 rounded-4 shadow-sm p-2 mb-2 rounded', required: true %>
+    <% if invalid %>
+      <div class="invalid-feedback fw-semibold d-block">
+        <% property_request.errors.full_messages_for(:description).each do |error| %>
+          <%= error %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= recaptcha_tags %>
+  </div>
+
+  <%= f.submit t('property_request.send'), class: 'btn btn-dark text-warning w-100 fw-semibold rounded-pill py-2' %>
+<% end %>

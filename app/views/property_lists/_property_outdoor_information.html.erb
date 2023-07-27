@@ -1,5 +1,5 @@
-<div class="col-md-3">
-  <% if property.property_outdoor.present? %>
+<% if property.property_outdoor.present? %>
+  <div class="col-md-3">
     <table class="table table-hover table-borderless">
       <tr>
         <td class="fw-semibold" colspan="3"><%= t('property.outdoor_information').upcase %></td>
@@ -28,5 +28,5 @@
         <% end %>
       </tbody>
     </table>
-  <% end %>
-</div>
+  </div>
+<% end %>

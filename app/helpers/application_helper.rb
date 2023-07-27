@@ -12,7 +12,6 @@ module ApplicationHelper
       description: t('header.meta_description_tags'),
       keywords: 'property, list, rental, house, land, villa, freehold, leasehold, rental monthly, rental daily, rental yearly',
       canonical: request.original_url,
-      noindex: !Rails.env.production?,
       icon: [
         { href: image_url('favicon.ico') },
       ],

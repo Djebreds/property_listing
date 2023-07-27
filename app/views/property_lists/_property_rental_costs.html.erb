@@ -1,5 +1,5 @@
 <% if property.property_rentals.present? %>
-  <div class="tab-content">
+  <div class="tab-content px-0">
     <% property.property_rentals.order(:rental_type).each_with_index do |rental, index| %>
       <% if rental.property_rental_costs.present? %>
           <div class="tab-pane fade <%= 'show active' if !@property.property_kinds.present? && index == 0 %> rental-c-<%= rental.id %>">

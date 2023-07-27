@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_072603) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_085808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "timescaledb"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -194,11 +193,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_072603) do
   create_table "property_requests", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.string "email", null: false
     t.string "phone", null: false
-    t.text "description"
-    t.string "property_type", null: false
+    t.string "email", null: false
+    t.text "description", null: false
     t.string "property_category", null: false
+    t.string "property_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

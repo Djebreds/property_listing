@@ -26,7 +26,7 @@
       <div class="carousel-inner">
         <% property.images.limit(3).each_with_index do |image, index| %>
           <div class="carousel-item <%= 'active' if index == 0  %>">
-            <%= image_tag image, class: 'card-img-top img-fluid', height: 294 %>
+            <%= image_tag image, class: 'card-img-top img-fluid', height: 294, alt: "#{property.name} #{index}" %>
           </div>
         <% end %>
       </div>
@@ -68,14 +68,14 @@
       <% if property.property_indoor.present? %>
         <div class="bedroom">
           <div class="icon d-flex align-items-center gap-2">
-            <%= image_tag 'bedroom_icon.png', width: 20, height: 20 %>
+            <%= image_tag 'bedroom_icon.png', width: 20, height: 20, alt: 'Bedroom' %>
             <p class="fw-bold mb-0 fs-5"><%= property.property_indoor.bedroom if property.property_indoor.bedroom.present? %></p>
           </div>
           <span class="fw-medium text-muted"><small><%= t('property.bedroom') %></small></span>
         </div>
         <div class="bathroom">
           <div class="icon d-flex align-items-center gap-2">
-            <%= image_tag 'bath_room_icon.png', width: 20, height: 20 %>
+            <%= image_tag 'bath_room_icon.png', width: 20, height: 20, alt: 'Bathroom' %>
             <p class="fw-bold mb-0 fs-5"><%= property.property_indoor.bathroom if property.property_indoor.bathroom.present? %></p>
           </div>
           <span class="fw-medium text-muted"><small><%= t('property.bathroom') %></small></span>
@@ -84,7 +84,7 @@
       <% if property.property_general.present? %>
         <div class="building-size">
           <div class="icon d-flex align-items-center gap-2">
-            <%= image_tag 'building_size_icon.png', width: 20, height: 20 %>
+            <%= image_tag 'building_size_icon.png', width: 20, height: 20, alt: 'Building Size' %>
             <p class="fw-bold mb-0 fs-5"><%= property.property_general.building_size_in_meter if property.property_general.building_size.present? %></p>
           </div>
           <span class="fw-medium text-muted"><small><%= t('property.building_size') %></small></span>

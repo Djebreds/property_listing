@@ -1,5 +1,5 @@
-<div class="col-md-3">
-  <% if property.property_indoor.present? %>
+<% if property.property_indoor.present? %>
+  <div class="col-md-3">
     <table class="table table-hover table-borderless">
       <tr>
         <td class="fw-semibold" colspan="3"><%= t('property.indoor_information').upcase %></td>
@@ -70,5 +70,5 @@
         <% end %>
       </tbody>
     </table>
-  <% end %>
-</div>
+  </div>
+<% end %>
