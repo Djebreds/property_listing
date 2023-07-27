@@ -5,13 +5,13 @@ ActiveAdmin.register_page "Dashboard" do
   content title: proc { I18n.t('active_admin.dashboard') } do
     columns do
       column do
-        panel 'Visitor Based on Property' do
+        panel t('active_admin.visitor_based_on_property') do
           column_chart Property.joins(:visitors).group(:name).distinct.count(:ip_address)
         end
       end
 
       column do
-        panel 'All Property location' do
+        panel t('active_admin.all_property_location') do
           div id: 'map', data: {
             controller: 'get-all-property-places',
             action: "google-maps-callback@window->get-all-property-places#initMap",

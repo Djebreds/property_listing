@@ -7,20 +7,20 @@ active_admin_form_for [:admin, resource], data: {
   flash[:error]
 
   f.inputs do
-    f.input :name
+    f.input :name, label: t('active_admin.property.name')
     f.input :property_type_id, as: :nested_select,
                                     level_1: { attribute: :property_category_id, collection: PropertyCategory.all },
                                     level_2: { attribute: :property_type_id, collection: PropertyType.all }
-    f.input :available_on, as: :datepicker,
+    f.input :available_on, label: t('active_admin.property.available_on'), as: :datepicker,
                               datepicker_options: {
                                 min_date: Date.current.to_s,
                               }
-    f.input :description, input_html: { rows: 2 }
-    f.input :note, input_html: { rows: 2 }
-    f.input :images, as: :file, input_html: { multiple: true }
+    f.input :description, label: t('active_admin.property.description'), input_html: { rows: 2 }
+    f.input :note, label: t('active_admin.property.note'), input_html: { rows: 2 }
+    f.input :images, label: t('active_admin.property.images'), as: :file, input_html: { multiple: true }
     f.input :latitude, input_html: { readonly: true, rows: 1, 'data-target': 'google-map-places.latitude' }
     f.input :longitude, input_html: { readonly: true, rows: 1, 'data-target': 'google-map-places.longitude' }
-    f.input :location, as: :search, input_html: {
+    f.input :location, label: t('active_admin.property.location'), as: :search, input_html: {
                                     'data-target': 'google-map-places.field',
                                     'data-action': 'keydown->google-map-places#keydown' }
     f.inputs 'Map' do
@@ -29,44 +29,44 @@ active_admin_form_for [:admin, resource], data: {
 
     panel '' do
       f.has_many :property_general, class: 'has_one' do |ff|
-        ff.input :land_size, label: 'Land size (m²)'
-        ff.input :building_size, label: 'Building size (m²)'
-        ff.input :floor_level
-        ff.input :view
-        ff.input :style_design, as: :select
-        ff.input :surrounding
+        ff.input :land_size, label: t('active_admin.property.property_general.land_size')
+        ff.input :building_size, label: t('active_admin.property.property_general.building_size')
+        ff.input :floor_level, label: t('active_admin.property.property_general.floor_level')
+        ff.input :view, label: t('active_admin.property.property_general.view')
+        ff.input :style_design, label: t('active_admin.property.property_general.style_design'), as: :select
+        ff.input :surrounding, label: t('active_admin.property.property_general.surrounding')
       end
     end
 
     panel '' do
       f.has_many :property_facility, class: 'has_one' do |ff|
-        ff.input :furniture, as: :select
-        ff.input :electric_power, label: 'Electric Power (watt)'
-        ff.input :water_resource, as: :select
-        ff.input :internet, as: :select
-        ff.input :parking, as: :select
+        ff.input :furniture, label: t('active_admin.property.property_facility.furniture'), as: :select
+        ff.input :electric_power, label: t('active_admin.property.property_facility.electric_power')
+        ff.input :water_resource, label: t('active_admin.property.property_facility.water_resource'), as: :select
+        ff.input :internet, label: t('active_admin.property.property_facility.internet'), as: :select
+        ff.input :parking, label: t('active_admin.property.property_facility.parking'), as: :select
       end
     end
 
     panel '' do
       f.has_many :property_indoor, class: 'has_one' do |ff|
-        ff.input :living_room, as: :select
-        ff.input :dinning_room, as: :select
-        ff.input :kitchen, as: :select
-        ff.input :bedroom
-        ff.input :bathroom
-        ff.input :ensuite_bathroom
-        ff.input :maid_room, as: :select
-        ff.input :storage, as: :select
-        ff.input :guest_toilet, as: :select
+        ff.input :living_room, label: t('active_admin.property.property_indoor.living_room'), as: :select
+        ff.input :dinning_room, label: t('active_admin.property.property_indoor.dinning_room'), as: :select
+        ff.input :kitchen, label: t('active_admin.property.property_indoor.kitchen'), as: :select
+        ff.input :bedroom, label: t('active_admin.property.property_indoor.bedroom')
+        ff.input :bathroom, label: t('active_admin.property.property_indoor.bathroom')
+        ff.input :ensuite_bathroom, label: t('active_admin.property.property_indoor.ensuite_bathroom')
+        ff.input :maid_room, label: t('active_admin.property.property_indoor.maid_room'), as: :select
+        ff.input :storage, label: t('active_admin.property.property_indoor.storage'), as: :select
+        ff.input :guest_toilet, label: t('active_admin.property.property_indoor.guest_toilet'), as: :select
       end
     end
 
     panel '' do
       f.has_many :property_outdoor, class: 'has_one' do |ff|
-        ff.input :swimming_pool, as: :select
-        ff.input :garden, as: :select
-        ff.input :balcony, as: :select
+        ff.input :swimming_pool, label: t('active_admin.property.property_outdoor.swimming_pool'), as: :select
+        ff.input :garden, label: t('active_admin.property.property_outdoor.gerden'), as: :select
+        ff.input :balcony, label: t('active_admin.property.property_outdoor.balcony'), as: :select
       end
     end
   end

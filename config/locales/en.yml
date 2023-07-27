@@ -31,6 +31,73 @@
 
 en:
   hello: "Hello world"
+  active_admin:
+    all_property_location: "All Property Location"
+    visitor_based_on_property: "Visitor Based on Property"
+    name: "Name"
+    email: "Email"
+    role: "Role"
+    current_sign_in_at: "Current Sign in At"
+    sign_in_count: "Sign In Count"
+    created_at: "Created At"
+    property:
+      name: "Name"
+      property_category: "Property Category"
+      property_type: "Property Type"
+      available_on: "Available On"
+      description: "Description"
+      note: "Note"
+      images: "Images"
+      location: "Location"
+      created_at: "Created At"
+      updated_at: "Updated At"
+      created_by: "Created By"
+      is_available: "Is Available"
+      property_general:
+        land_size: "Land Size (m²)"
+        building_size: "Building Size (m²)"
+        floor_level: "Floor Level"
+        view: "View"
+        style_design: "Style Design"
+        surrounding: "Surrounding"
+      property_facility:
+        furniture: "Furniture"
+        electric_power: "Electric Power"
+        water_resource: "Water Resource"
+        internet: "Internet"
+        parking: "Parking"
+      property_indoor:
+        living_room: "Living Room"
+        dinning_room: "Dinning Room"
+        kitchen: "Kitchen"
+        bedroom: "Bedroom"
+        bathroom: "Bathroom"
+        ensuite_bathroom: "Ensuite Bathroom"
+        maid_room: "Maid Room"
+        storage: "Storage"
+        guest_toilet: "Guest Toilet"
+      property_outdoor:
+        living_room: "Swimming Pool"
+        garden: "Garden"
+        balcony: "Balcony"
+      property_kind:
+        name: "Property Kind"
+        kind: "Kind"
+        price: "Price"
+        price_currency: "Price Currency"
+        property_costs:
+          detail_cost: "Detail Cost"
+          name: "Name"
+          value: "Value"
+      property_rental:
+        name: "Property Rental"
+        rental: "Rental"
+        price: "Price"
+        price_currency: "Price Currency"
+        property_costs:
+          detail_cost: "Detail Cost"
+          name: "Name"
+          value: "Value"
   top_bar:
     change_languages: "Change language"
     indonesia: "Indonesia"

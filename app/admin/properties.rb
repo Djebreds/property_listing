@@ -10,6 +10,8 @@ ActiveAdmin.register Property do
     selectable_column
     id_column
     column :name
+    column :property_category
+    column :property_type
     column :created_at
     column :updated_at
 
@@ -43,8 +45,43 @@ ActiveAdmin.register Property do
   end
 
   show do
-    default_main_content do
-      row :images do
+    attributes_table do
+      row t('active_admin.property.name') do
+        resource.name
+      end
+      row t('active_admin.property.property_category') do
+        resource.property_category
+      end
+      row t('active_admin.property.property_type') do
+        resource.property_type
+      end
+      row t('active_admin.property.is_available') do
+        resource.is_available
+      end
+      row t('active_admin.property.available_on') do
+        resource.available_on
+      end
+      row :latitude
+      row :longitude
+      row t('active_admin.property.location') do
+        resource.location
+      end
+      row t('active_admin.property.created_by') do
+        resource.created_by
+      end
+      row t('active_admin.property.created_at') do
+        resource.created_at
+      end
+      row t('active_admin.property.updated_at') do
+        resource.updated_at
+      end
+      row t('active_admin.property.note') do
+        resource.note
+      end
+      row t('active_admin.property.description') do
+        resource.description
+      end
+      row t('active_admin.property.images') do
         div do
           property.images.each do |img|
             span do
@@ -56,59 +93,77 @@ ActiveAdmin.register Property do
 
       panel 'General Information' do
         table_for resource.property_general do
-          column :land_size do |general|
+          column t('active_admin.property.property_general.land_size'), :land_size do |general|
             general.land_size_in_meter if general.present?
           end
-          column :building_size do |general|
+          column t('active_admin.property.property_general.building_size'), :building_size do |general|
             general.building_size_in_meter if general.present?
           end
-          column :floor_level
-          column :view
-          column :style_design
-          column :surrounding
+          column t('active_admin.property.property_general.floor_level'), :floor_level
+          column t('active_admin.property.property_general.view'), :view
+          column t('active_admin.property.property_general.style_design'), :style_design
+          column t('active_admin.property.property_general.surrounding'), :surrounding
         end
       end
 
       panel 'Indoor Information' do
-        table_for resource.property_indoor, :living_room, :dinning_room, :kitchen, :bedroom, :ensuite_bathroom, :maid_room, :storage, :guest_toilet
+        table_for resource.property_indoor do
+          column t('active_admin.property.property_indoor.living_room'), :living_room
+          column t('active_admin.property.property_indoor.dinning_room'), :dinning_room
+          column t('active_admin.property.property_indoor.kitchen'), :kitchen
+          column t('active_admin.property.property_indoor.bedroom'), :bedroom
+          column t('active_admin.property.property_indoor.bathroom'), :bathroom
+          column t('active_admin.property.property_indoor.ensuite_bathroom'), :ensuite_bathroom
+          column t('active_admin.property.property_indoor.maid_room'), :maid_room
+          column t('active_admin.property.property_indoor.storage'), :storage
+          column t('active_admin.property.property_indoor.guest_toilet'), :guest_toilet
+        end
       end
 
       panel 'Outdoor Information' do
-        table_for resource.property_outdoor, :swimming_pool, :garden, :balcony
+        table_for resource.property_outdoor do
+          column t('active_admin.property.property_outdoor.swimming_pool'), :swimming_pool
+          column t('active_admin.property.property_outdoor.garden'), :garden
+          column t('active_admin.property.property_outdoor.balcony'), :balcony
+        end
       end
 
       panel 'Facility Information' do
         table_for resource.property_facility do
-          column :furniture
-          column :electric_power do |facility|
+          column t('active_admin.property.property_facility.furniture'), :furniture
+          column t('active_admin.property.property_facility.electric_power'), :electric_power do |facility|
             facility.electric_power_in_watt if facility.present?
           end
-          column :water_resource
-          column :internet
-          column :parking
+          column t('active_admin.property.property_facility.water_resource'), :water_resource
+          column t('active_admin.property.property_facility.internet'), :internet
+          column t('active_admin.property.property_facility.parking'), :parking
         end
       end
 
-      panel 'Property Kind' do
+      panel t('active_admin.property.property_kind.name') do
         table_for resource.property_kinds do
-          column :kind do |property_kind|
+          column t('active_admin.property.property_kind.kind'), :kind do |property_kind|
             link_to property_kind.kind, admin_property_property_kind_path(property, property_kind, locale: I18n.locale)
           end
-          column :price
-          column 'Detail Costs' do |property_kind|
-            link_to 'Detail Costs', admin_property_property_kind_path(property, property_kind, locale: I18n.locale)
+          column t('active_admin.property.property_kind.price'), :price do |p|
+            p.display_price('IDR')
+          end
+          column t('active_admin.property.property_kind.property_costs.detail_cost') do |property_kind|
+            link_to t('active_admin.property.property_kind.property_costs.detail_cost'), admin_property_property_kind_path(property, property_kind, locale: I18n.locale)
           end
         end
       end
 
-      panel 'Property Rental' do
+      panel t('active_admin.property.property_rental.name') do
         table_for resource.property_rentals do
-          column :rental_type do |property_rental|
+          column t('active_admin.property.property_rental.rental'), :rental_type do |property_rental|
             property_rental.rental_type
           end
-          column :price
-          column 'Detail Costs' do |property_rental|
-            link_to 'Detail Costs', admin_property_property_rental_path(property, property_rental, locale: I18n.locale)
+          column t('active_admin.property.property_rental.price'), :price do |p|
+            p.display_price('IDR')
+          end
+          column t('active_admin.property.property_rental.property_costs.detail_cost') do |property_rental|
+            link_to t('active_admin.property.property_rental.property_costs.detail_cost'), admin_property_property_rental_path(property, property_rental, locale: I18n.locale)
           end
         end
       end
@@ -126,13 +181,13 @@ ActiveAdmin.register Property do
 
   sidebar 'Property Kind', only: :show do
     ul do
-      li link_to 'Kind', admin_property_property_kinds_path(property, locale: I18n.locale)
+      li link_to t('active_admin.property.property_kind.kind'), admin_property_property_kinds_path(property, locale: I18n.locale)
     end
   end
 
   sidebar 'Property Rental', only: :show do
     ul do
-      li link_to 'Rental', admin_property_property_rentals_path(property, locale: I18n.locale)
+      li link_to t('active_admin.property.property_rental.rental'), admin_property_property_rentals_path(property, locale: I18n.locale)
     end
   end
 end
