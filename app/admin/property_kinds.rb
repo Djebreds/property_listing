@@ -4,19 +4,7 @@ ActiveAdmin.register PropertyKind do
   permit_params :kind, :price, :locale,
                 property_kind_costs_attributes: %i[id name value _destroy]
 
-  controller do
-    def create
-      super do |format|
-        flash[:error] = resource.errors.full_messages.join(', ').html_safe if resource.errors.any?
-      end
-    end
-
-    def update
-      super do |format|
-        flash[:error] = resource.errors.full_messages.join(', ').html_safe if resource.errors.any?
-      end
-    end
-  end
+  batch_action :destroy, confirm: I18n.t('active_admin.destroy_item')
 
   index do
     selectable_column
@@ -55,9 +43,7 @@ ActiveAdmin.register PropertyKind do
     end
   end
 
-  form do |f|
-    flash[:error]
-
+  form data: { turbo: false } do |f|
     f.inputs do
       f.input :kind, label: t('active_admin.property.property_kind.kind'), as: :select
       f.input :price, label: t('active_admin.property.property_kind.price')

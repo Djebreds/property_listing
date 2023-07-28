@@ -32,11 +32,13 @@
 en:
   hello: "Hello world"
   active_admin:
+    destroy_item: "Are you sure?"
     all_property_location: "All Property Location"
     visitor_based_on_property: "Visitor Based on Property"
     name: "Name"
     email: "Email"
     role: "Role"
+    password_confirmation: "Password Confirmation"
     current_sign_in_at: "Current Sign in At"
     sign_in_count: "Sign In Count"
     created_at: "Created At"
@@ -54,6 +56,7 @@ en:
       created_by: "Created By"
       is_available: "Is Available"
       property_general:
+        name: "General Information"
         land_size: "Land Size (m²)"
         building_size: "Building Size (m²)"
         floor_level: "Floor Level"
@@ -61,12 +64,14 @@ en:
         style_design: "Style Design"
         surrounding: "Surrounding"
       property_facility:
+        name: "Facility Information"
         furniture: "Furniture"
         electric_power: "Electric Power"
         water_resource: "Water Resource"
         internet: "Internet"
         parking: "Parking"
       property_indoor:
+        name: "Indoor Information"
         living_room: "Living Room"
         dinning_room: "Dinning Room"
         kitchen: "Kitchen"
@@ -77,6 +82,7 @@ en:
         storage: "Storage"
         guest_toilet: "Guest Toilet"
       property_outdoor:
+        name: "Outdoor Information"
         living_room: "Swimming Pool"
         garden: "Garden"
         balcony: "Balcony"

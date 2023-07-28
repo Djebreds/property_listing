@@ -21,12 +21,12 @@ ActiveAdmin.register AdminUser do
   filter :sign_in_count
   filter :created_at
 
-  form do |f|
+  form data: { turbo: false } do |f|
     f.inputs do
       f.input :name, label: t('active_admin.name')
       f.input :email, label: t('active_admin.email')
       f.input :password
-      f.input :password_confirmation
+      f.input :password_confirmation, label: t('active_admin.password_confirmation')
       f.input :role, label: t('active_admin.role'), as: :select
     end
     f.actions

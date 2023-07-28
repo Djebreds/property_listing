@@ -1,12 +1,14 @@
 id:
   hello: "Halo Dunia"
   active_admin:
+    destroy_item: "Apakah kamu yakin?"
     all_property_location: "Semua Lokasi Properti"
     visitor_based_on_property: "Pengunjung Berdasarkan Properti"
     name: "Nama"
     email: "Email"
     role: "Peran"
     current_sign_in_at: "Masuk Pada Tanggal"
+    password_confirmation: "Konfirmasi Password"
     sign_in_count: "Jumlah Masuk"
     created_at: "Tanggal Dibuat"
     property:
@@ -23,6 +25,7 @@ id:
       created_by: "Dibuat Oleh"
       is_available: "Ketersediaan"
       property_general:
+        name: "Informasi Umum"
         land_size: "Ukuran Tanah (m²)"
         building_size: "Ukuran Bangunan (m²)"
         floor_level: "Tingkat Lantai"
@@ -30,12 +33,14 @@ id:
         style_design: "Style Design"
         surrounding: "Lingkungan"
       property_facility:
+        name: "Informasi Fasilitas"
         furniture: "Perabot"
         electric_power: "Daya Listrik (watt)"
         water_resource: "Sumber Air"
         internet: "Internet"
         parking: "Parkir"
       property_indoor:
+        name: "Informasi Ruangan Dalam"
         living_room: "Ruang Tamu"
         dinning_room: "Ruang Makan"
         kitchen: "Dapur"
@@ -46,6 +51,7 @@ id:
         storage: "Gudang"
         guest_toilet: "Toilet Tamu"
       property_outdoor:
+        name: "Informasi Ruangan Luar"
         swimming_pool: "Kolam Berenang"
         garden: "Kebun"
         balcony: "Balkon"

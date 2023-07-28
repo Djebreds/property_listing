@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_26_085808) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,15 +76,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_085808) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description", null: false
-    t.boolean "is_available", default: true, null: false
-    t.date "available_on"
-    t.string "note"
+    t.boolean "is_available", default: false, null: false
     t.decimal "latitude", precision: 10, scale: 6, default: "0.0", null: false
     t.decimal "longitude", precision: 10, scale: 6, default: "0.0", null: false
-    t.string "location", null: false
     t.integer "created_by", default: 0, null: false
+    t.string "created_with", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "property_category_id", null: false
@@ -201,6 +197,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_085808) do
     t.string "property_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "property_translations", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "location"
+    t.string "note"
+    t.text "description"
+    t.index ["locale"], name: "index_property_translations_on_locale"
+    t.index ["property_id"], name: "index_property_translations_on_property_id"
   end
 
   create_table "property_types", force: :cascade do |t|

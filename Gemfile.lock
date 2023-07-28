@@ -141,6 +141,12 @@ GEM
     geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    globalize (6.2.1)
+      activemodel (>= 4.2, < 7.1)
+      activerecord (>= 4.2, < 7.1)
+      request_store (~> 1.0)
+    globalize-accessors (0.3.0)
+      globalize (>= 5.0.0)
     gmaps4rails (2.1.2)
     has_scope (0.8.1)
       actionpack (>= 5.2)
@@ -274,6 +280,8 @@ GEM
     regexp_parser (2.8.1)
     reline (0.3.6)
       io-console (~> 0.5)
+    request_store (1.5.1)
+      rack (>= 1.4)
     require_all (3.0.0)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -353,6 +361,8 @@ DEPENDENCIES
   dotenv-rails
   easy_translate
   geocoder
+  globalize
+  globalize-accessors
   gmaps4rails
   jbuilder
   jsbundling-rails

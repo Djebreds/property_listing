@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope '(:locale)', defaults: { locale: I18n.locale } do
+  scope '(:locale)', defaults: { locale: I18n.default_locale } do
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
 

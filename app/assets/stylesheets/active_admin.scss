@@ -11,7 +11,14 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 
+$primary-color: #ffc107;
+
 @import "arctic_admin/base";
+
+a {
+  color: #212529 !important;
+  text-decoration: none;
+}
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
@@ -20,4 +27,8 @@
 
 .has_one~.has_many_add {
   display: none !important;
+}
+
+button, input[type="submit"], .button {
+  color: #212529;
 }

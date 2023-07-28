@@ -13,6 +13,7 @@ module PropertyListing
 
     config.google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY']
     EasyTranslate.api_key = ENV['GOOGLE_TRANSLATION_API_KEY']
+    Globalize.fallbacks = { en: [:en, :id], id: [:id, :en] }
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -7,11 +7,18 @@ class PropertyRental < ApplicationRecord
 
   monetize :price_cents, numericality: { greater_than_or_equal_to: 0 }, as: :price
 
+  validates :rental_type, :rental_type, presence: true
   validates :rental_type, uniqueness: { scope: :property_id }
 
   enum rental_type: { daily: 1, monthly: 2, yearly: 3 }
 
+  after_commit :update_property_availability
+
   def display_price(currency)
     Money.new(self.price_cents, self.currency).exchange_to(currency).format
+  end
+
+  def update_property_availability
+    property.check_available
   end
 end

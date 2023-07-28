@@ -4,19 +4,7 @@ ActiveAdmin.register PropertyRental do
   permit_params :rental_type, :price, :locale,
                 property_rental_costs_attributes: %i[id name value _destroy]
 
-  controller do
-    def create
-      super do |format|
-        flash[:error] = resource.errors.full_messages.join(', ').html_safe if resource.errors.any?
-      end
-    end
-
-    def update
-      super do |format|
-        flash[:error] = resource.errors.full_messages.join(', ').html_safe if resource.errors.any?
-      end
-    end
-  end
+  batch_action :destroy, confirm: I18n.t('active_admin.destroy_item')
 
   index do
     selectable_column
@@ -29,7 +17,7 @@ ActiveAdmin.register PropertyRental do
     actions
   end
 
- show do
+  show do
     attributes_table do
       row t('active_admin.property.property_rental.rental') do
         resource.rental_type
@@ -55,9 +43,7 @@ ActiveAdmin.register PropertyRental do
     end
   end
 
-  form do |f|
-    flash[:error]
-
+  form data: { turbo: false } do |f|
     f.inputs do
       f.input :rental_type, label: t('active_admin.property.property_rental.rental'), as: :select
       f.input :price, label: t('active_admin.property.property_rental.price')

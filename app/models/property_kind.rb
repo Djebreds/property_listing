@@ -7,11 +7,18 @@ class PropertyKind < ApplicationRecord
 
   monetize :price_cents, numericality: { greater_than_or_equal_to: 0 }, as: :price
 
+  validates :kind, :price, presence: true
   validates :kind, uniqueness: { scope: :property_id }
 
   enum kind: { freehold: 1, leasehold: 2 }
 
+  after_commit :update_property_availability
+
   def display_price(currency)
     Money.new(self.price_cents, self.currency).exchange_to(currency).format
+  end
+
+  def update_property_availability
+    property.check_available
   end
 end

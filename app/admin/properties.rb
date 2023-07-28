@@ -1,6 +1,6 @@
 ActiveAdmin.register Property do
   permit_params :name, :description, :property_category_id, :property_type_id, :locale,
-                :available_on, :latitude, :longitude, :location, :note, images: [],
+                :latitude, :longitude, :location, :note, images: [],
                 property_facility_attributes: %i[id furniture electric_power water_resource internet parking _destroy],
                 property_general_attributes: %i[id land_size building_size floor_level view style_design surrounding _destroy],
                 property_indoor_attributes: %i[id living_room dinning_room kitchen bedroom bathroom ensuite_bathroom maid_room storage guest_toilet _destroy],
@@ -15,27 +15,7 @@ ActiveAdmin.register Property do
     column :created_at
     column :updated_at
 
-    actions defaults: false do |property|
-      links = ''.html_safe
-      links += link_to I18n.t('active_admin.view'), admin_property_path(property, locale: I18n.locale), class: "member_link view_link"
-      links += link_to I18n.t('active_admin.edit'), edit_admin_property_path(property, locale: I18n.locale), class: "member_link edit_link"
-      links += link_to I18n.t('active_admin.delete'), admin_property_path(property, locale: I18n.locale), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), class: "member_link delete_link"
-      links
-    end
-  end
-
-  controller do
-    def create
-      super do |format|
-        flash[:error] = resource.errors.full_messages.join(', ').html_safe if resource.errors.any?
-      end
-    end
-
-    def update
-      super do |format|
-        flash[:error] = resource.errors.full_messages.join(', ').html_safe if resource.errors.any?
-      end
-    end
+    actions
   end
 
   form partial: 'admin/form'
@@ -57,9 +37,6 @@ ActiveAdmin.register Property do
       end
       row t('active_admin.property.is_available') do
         resource.is_available
-      end
-      row t('active_admin.property.available_on') do
-        resource.available_on
       end
       row :latitude
       row :longitude
@@ -91,7 +68,7 @@ ActiveAdmin.register Property do
         end
       end
 
-      panel 'General Information' do
+      panel t('active_admin.property.property_general.name') do
         table_for resource.property_general do
           column t('active_admin.property.property_general.land_size'), :land_size do |general|
             general.land_size_in_meter if general.present?
@@ -106,7 +83,7 @@ ActiveAdmin.register Property do
         end
       end
 
-      panel 'Indoor Information' do
+      panel t('active_admin.property.property_indoor.name') do
         table_for resource.property_indoor do
           column t('active_admin.property.property_indoor.living_room'), :living_room
           column t('active_admin.property.property_indoor.dinning_room'), :dinning_room
@@ -120,7 +97,7 @@ ActiveAdmin.register Property do
         end
       end
 
-      panel 'Outdoor Information' do
+      panel t('active_admin.property.property_outdoor.name') do
         table_for resource.property_outdoor do
           column t('active_admin.property.property_outdoor.swimming_pool'), :swimming_pool
           column t('active_admin.property.property_outdoor.garden'), :garden
@@ -128,7 +105,7 @@ ActiveAdmin.register Property do
         end
       end
 
-      panel 'Facility Information' do
+      panel t('active_admin.property.property_facility.name') do
         table_for resource.property_facility do
           column t('active_admin.property.property_facility.furniture'), :furniture
           column t('active_admin.property.property_facility.electric_power'), :electric_power do |facility|
