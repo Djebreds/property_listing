@@ -3,7 +3,14 @@
     <div class="container">
       <%= render 'shared/alert_messages' %>
       <header class="text-center mb-3">
-        <h2 class="fw-semibold"><%= t('header.sell_property') %></h2>
+        <div class="row justify-content-center">
+          <h2 class="fw-semibold"><%= t('header.sell_property') %></h2>
+          <div class="col-md-7">
+            <p>
+              <%= t('header.sell_property_text') %>
+            </p>
+          </div>
+        </div>
       </header>
       <div class="row justify-content-center">
         <div class="col-md-5">

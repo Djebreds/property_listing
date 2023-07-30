@@ -17,18 +17,17 @@ class Property < ApplicationRecord
   accepts_nested_attributes_for :property_indoor, allow_destroy: true
   accepts_nested_attributes_for :property_outdoor, allow_destroy: true
 
-  enum created_by: { admin: 0, marketing_officer: 1 }
-
   reverse_geocoded_by :latitude, :longitude
   geocoded_by :location
-
-  translates :name, :location, :note, :description
-  globalize_accessors locale: [:en, :id], attributes: [:name, :location, :note, :description]
+  enum created_by: { admin: 0, marketing_officer: 1 }
 
   validates :name, :latitude, :longitude, :property_type, :property_category,
             :location, :images, presence: true
 
-  before_save :translate_attributes, :property_creation
+  translates :name, :location, :note, :description
+  globalize_accessors locale: [:en, :id], attributes: [:name, :location, :note, :description]
+
+  before_save :translate_attributes
   after_save :check_available
 
   def counting_viewers
@@ -47,11 +46,6 @@ class Property < ApplicationRecord
   end
 
   private
-
-  def property_creation
-    self.created_by = current_admin_user.role
-    self.created_with = current_admin_user.name
-  end
 
   def translate_attributes
     I18n.locale = :en

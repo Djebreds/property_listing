@@ -11,7 +11,10 @@ class PropertyKind < ApplicationRecord
   validates :kind, uniqueness: { scope: :property_id }
 
   enum kind: { freehold: 1, leasehold: 2 }
+  translates :kind
+  globalize_accessors locale: [:en, :id], attributes: [:kind]
 
+  before_save :translate_attributes
   after_commit :update_property_availability
 
   def display_price(currency)
@@ -20,5 +23,15 @@ class PropertyKind < ApplicationRecord
 
   def update_property_availability
     property.check_available
+  end
+
+  private
+
+  def translate_attributes
+    I18n.locale = :en
+    self.kind_en = EasyTranslate.translate(self.kind, to: :en, model: :nmt)
+
+    I18n.locale = :id
+    self.kind_id = EasyTranslate.translate(self.kind, to: :id, model: :nmt)
   end
 end

@@ -1,7 +1,7 @@
 class CreatePropertyRentals < ActiveRecord::Migration[7.0]
   def change
     create_table :property_rentals do |t|
-      t.integer :rental_type, default: 0, null: false
+      t.string :rental_type, null: false, default: ""
       t.monetize :price, precision: 12, scale: 2
 
       t.references :property, null: false, foreign_key: true

@@ -13,12 +13,10 @@ end
 
 unless PropertyType.any?
   PropertyType.create!([
-    {name: 'Villas', property_category_id: 1},
+    {name: 'Villa', property_category_id: 1},
     {name: 'Land', property_category_id: 1},
     {name: 'Other', property_category_id: 1},
-    {name: 'Villas', property_category_id: 2},
+    {name: 'Villa', property_category_id: 2},
     {name: 'Other', property_category_id: 2}
   ])
 end
-
-

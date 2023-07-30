@@ -1,6 +1,6 @@
 ActiveAdmin.register Property do
   permit_params :name, :description, :property_category_id, :property_type_id, :locale,
-                :latitude, :longitude, :location, :note, images: [],
+                :latitude, :longitude, :location, :created_by, :created_with, :note, images: [],
                 property_facility_attributes: %i[id furniture electric_power water_resource internet parking _destroy],
                 property_general_attributes: %i[id land_size building_size floor_level view style_design surrounding _destroy],
                 property_indoor_attributes: %i[id living_room dinning_room kitchen bedroom bathroom ensuite_bathroom maid_room storage guest_toilet _destroy],
@@ -12,6 +12,8 @@ ActiveAdmin.register Property do
     column :name
     column :property_category
     column :property_type
+    column :created_by
+    column :created_with
     column :created_at
     column :updated_at
 
@@ -71,57 +73,117 @@ ActiveAdmin.register Property do
       panel t('active_admin.property.property_general.name') do
         table_for resource.property_general do
           column t('active_admin.property.property_general.land_size'), :land_size do |general|
-            general.land_size_in_meter if general.present?
+            if general.present?
+              general.land_size_in_meter if general.land_size.present?
+            end
           end
           column t('active_admin.property.property_general.building_size'), :building_size do |general|
-            general.building_size_in_meter if general.present?
+            if general.present?
+              general.building_size_in_meter if general.building_size?
+            end
           end
           column t('active_admin.property.property_general.floor_level'), :floor_level
           column t('active_admin.property.property_general.view'), :view
-          column t('active_admin.property.property_general.style_design'), :style_design
+          column t('active_admin.property.property_general.style_design'), :style_design do |general|
+            if general.present?
+              I18n.t("activerecord.attributes.property_general.style_designs.#{general.style_design}") if general.style_design.present?
+            end
+          end
           column t('active_admin.property.property_general.surrounding'), :surrounding
         end
       end
 
       panel t('active_admin.property.property_indoor.name') do
         table_for resource.property_indoor do
-          column t('active_admin.property.property_indoor.living_room'), :living_room
-          column t('active_admin.property.property_indoor.dinning_room'), :dinning_room
-          column t('active_admin.property.property_indoor.kitchen'), :kitchen
+          column t('active_admin.property.property_indoor.living_room'), :living_room do |indoor|
+            if indoor.present?
+              I18n.t("activerecord.attributes.property_indoor.living_rooms.#{indoor.living_room}") if indoor.living_room.present?
+            end
+          end
+          column t('active_admin.property.property_indoor.dinning_room'), :dinning_room do |indoor|
+            if indoor.present?
+              I18n.t("activerecord.attributes.property_indoor.dinning_rooms.#{indoor.dinning_room}") if indoor.dinning_room.present?
+            end
+          end
+          column t('active_admin.property.property_indoor.kitchen'), :kitchen do |indoor|
+            if indoor.present?
+              I18n.t("activerecord.attributes.property_indoor.kitchens.#{indoor.kitchen}") if indoor.kitchen.present?
+            end
+          end
           column t('active_admin.property.property_indoor.bedroom'), :bedroom
           column t('active_admin.property.property_indoor.bathroom'), :bathroom
           column t('active_admin.property.property_indoor.ensuite_bathroom'), :ensuite_bathroom
-          column t('active_admin.property.property_indoor.maid_room'), :maid_room
-          column t('active_admin.property.property_indoor.storage'), :storage
-          column t('active_admin.property.property_indoor.guest_toilet'), :guest_toilet
+          column t('active_admin.property.property_indoor.maid_room'), :maid_room do |indoor|
+            if indoor.present?
+              I18n.t("activerecord.attributes.property_indoor.maid_rooms.#{indoor.maid_room}") if indoor.maid_room.present?
+            end
+          end
+          column t('active_admin.property.property_indoor.storage'), :storage do |indoor|
+            if indoor.present?
+              I18n.t("activerecord.attributes.property_indoor.storages.#{indoor.storage}") if indoor.storage.present?
+            end
+          end
+          column t('active_admin.property.property_indoor.guest_toilet'), :guest_toilet do |indoor|
+            if indoor.present?
+              I18n.t("activerecord.attributes.property_indoor.guest_toilet.#{indoor.guest_toilet}") if indoor.guest_toilet.present?
+            end
+          end
         end
       end
 
       panel t('active_admin.property.property_outdoor.name') do
         table_for resource.property_outdoor do
-          column t('active_admin.property.property_outdoor.swimming_pool'), :swimming_pool
-          column t('active_admin.property.property_outdoor.garden'), :garden
-          column t('active_admin.property.property_outdoor.balcony'), :balcony
+          column t('active_admin.property.property_outdoor.swimming_pool'), :swimming_pool do |outdoor|
+            if outdoor.present?
+              I18n.t("activerecord.attributes.property_outdoor.swimming_pool.#{outdoor.swimming_pool}") if outdoor.swimming_pool.present?
+            end
+          end
+          column t('active_admin.property.property_outdoor.garden'), :garden do |outdoor|
+            if outdoor.present?
+              I18n.t("activerecord.attributes.property_outdoor.garden.#{outdoor.garden}") if outdoor.garden.present?
+            end
+          end
+          column t('active_admin.property.property_outdoor.balcony'), :balcony do |outdoor|
+            if outdoor.present?
+              I18n.t("activerecord.attributes.property_outdoor.balcony.#{outdoor.balcony}") if outdoor.balcony.present?
+            end
+          end
         end
       end
 
       panel t('active_admin.property.property_facility.name') do
         table_for resource.property_facility do
-          column t('active_admin.property.property_facility.furniture'), :furniture
-          column t('active_admin.property.property_facility.electric_power'), :electric_power do |facility|
-            facility.electric_power_in_watt if facility.present?
+          column t('active_admin.property.property_facility.furniture'), :furniture do |facility|
+            if facility.present?
+              I18n.t("activerecord.attributes.property_facility.furnitures.#{facility.furniture}") if facility.furniture.present?
+            end
           end
-          column t('active_admin.property.property_facility.water_resource'), :water_resource
-          column t('active_admin.property.property_facility.internet'), :internet
-          column t('active_admin.property.property_facility.parking'), :parking
+          column t('active_admin.property.property_facility.electric_power'), :electric_power do |facility|
+            if facility.present?
+              facility.electric_power_in_watt if facility.electric_power.present?
+            end
+          end
+          column t('active_admin.property.property_facility.water_resource'), :water_resource do |facility|
+            if facility.present?
+              I18n.t("activerecord.attributes.property_facility.water_resources.#{facility.water_resource}") if facility.water_resource.present?
+            end
+          end
+          column t('active_admin.property.property_facility.internet'), :internet do |facility|
+            if facility.present?
+              I18n.t("activerecord.attributes.property_facility.internets.#{facility.internet}") if facility.internet.present?
+            end
+          end
+          column t('active_admin.property.property_facility.parking'), :parking do |facility|
+            if facility.present?
+              I18n.t("activerecord.attributes.property_facility.parkings.#{facility.parking}") if facility.parking.present?
+            end
+          end
         end
       end
 
       panel t('active_admin.property.property_kind.name') do
         table_for resource.property_kinds do
-          column t('active_admin.property.property_kind.kind'), :kind do |property_kind|
-            link_to property_kind.kind, admin_property_property_kind_path(property, property_kind, locale: I18n.locale)
-          end
+          column t('active_admin.property.property_kind.kind'), :kind
           column t('active_admin.property.property_kind.price'), :price do |p|
             p.display_price('IDR')
           end
@@ -133,9 +195,7 @@ ActiveAdmin.register Property do
 
       panel t('active_admin.property.property_rental.name') do
         table_for resource.property_rentals do
-          column t('active_admin.property.property_rental.rental'), :rental_type do |property_rental|
-            property_rental.rental_type
-          end
+          column t('active_admin.property.property_rental.rental'), :rental_type
           column t('active_admin.property.property_rental.price'), :price do |p|
             p.display_price('IDR')
           end

@@ -4,8 +4,6 @@ ActiveAdmin.register PropertyRental do
   permit_params :rental_type, :price, :locale,
                 property_rental_costs_attributes: %i[id name value _destroy]
 
-  batch_action :destroy, confirm: I18n.t('active_admin.destroy_item')
-
   index do
     selectable_column
     id_column

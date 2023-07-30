@@ -31,6 +31,67 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    enum_translatable:
+      property_kind:
+        kinds:
+          freehold: "Freehold"
+          leashold: "Leasehold"
+      property_rental:
+        rental_types:
+          daily: "Daily"
+          monthly: "Monthly"
+          yearly: "Yearly"
+    attributes:
+      property_facility:
+        furnitures:
+          furnished: "Furnished"
+          not_furnished: "Not Furnished"
+        internets:
+          fiber_optic: "Fiber Optic"
+          wireless: "Wireless"
+        parkings:
+          closed: "Closed"
+          opened: "Opened"
+        water_resources:
+          drilled_wells: "Drilled Wells"
+          pdam: "PDAM"
+      property_general:
+        style_designs:
+          modern: "Modern"
+          classic: "Classic"
+      property_indoor:
+        kitchens:
+          not_enclosed: "Not Enclosed"
+          enclosed: "Enclosed"
+        living_rooms:
+          not_enclosed: "Not Enclosed"
+          enclosed: "Enclosed"
+        dinning_rooms:
+          not_enclosed: "Not Enclosed"
+          enclosed: "Enclosed"
+        maid_rooms:
+          miad_room_yes: "yes"
+        storages:
+          storage_yes: "yes"
+        guest_toilet:
+          guest_toilet_yes: "yes"
+      property_kind:
+        kinds:
+          freehold: "Freehold"
+          leashold: "Leasehold"
+      property_outdoor:
+        swimming_pool:
+          swimming_pool_yes: "Yes"
+        garden:
+          garden_yes: "Yes"
+        balcony:
+          balcony_yes: "Yes"
+      property_rental:
+        rental_types:
+          daily: "Daily"
+          monthly: "Monthly"
+          yearly: "Yearly"
   active_admin:
     destroy_item: "Are you sure?"
     all_property_location: "All Property Location"
@@ -114,6 +175,7 @@ en:
     properties: "Properties"
     contact_us: "Contact Us"
     sell_property: "Sell or Rent My Property"
+    sell_property_text: "Please fill this form and our listing agents will contact you to visit your property and/or give you a price valuation"
     meta_description_tags: "The most popular property list website in the world."
     meta_search_title: "Search Property"
     meta_search_description: "Find your dream property with trusted"

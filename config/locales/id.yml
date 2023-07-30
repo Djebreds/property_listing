@@ -1,5 +1,66 @@
 id:
   hello: "Halo Dunia"
+  activerecord:
+    enum_translatable:
+      property_kind:
+        kinds:
+          freehold: "Hak Milik"
+          leasehold: "Penyewaan"
+      property_rental:
+        rental_types:
+          daily: "Daily"
+          monthly: "Monthly"
+          yearly: "Yearly"
+    attributes:
+      property_facility:
+        furnitures:
+          furnished: "Berperabot"
+          not_furnished: "Tidak Berperabot"
+        internets:
+          fiber_optic: "Fiber Optic"
+          wireless: "Nirkabel"
+        parkings:
+          closed: "Tertutup"
+          opened: "Terbuka"
+        water_resources:
+          drilled_wells: "Sumur Bor"
+          pdam: "pdam"
+      property_general:
+        style_designs:
+          modern: "Modern"
+          classic: "Classic"
+      property_indoor:
+        kitchens:
+          not_enclosed: "Tidak Terlampir"
+          enclosed: "Terlampir"
+        living_rooms:
+          not_enclosed: "Tidak Terlampir"
+          enclosed: "Terlampir"
+        dinning_rooms:
+          not_enclosed: "Tidak Terlampir"
+          enclosed: "Terlampir"
+        maid_rooms:
+          miad_room_yes: "Ya"
+        storages:
+          storage_yes: "Ya"
+        guest_toilet:
+          guest_toilet_yes: "Ya"
+      property_kind:
+        kinds:
+          freehold: "Hak Milik"
+          leasehold: "Penyewaan"
+      property_outdoor:
+        swimming_pool:
+          swimming_pool_yes: "Ya"
+        garden:
+          garden_yes: "Ya"
+        balcony:
+          balcony_yes: "Ya"
+      property_rental:
+        rental_types:
+          daily: "Harian"
+          monthly: "Bulanan"
+          yearly: "Tahunan"
   active_admin:
     destroy_item: "Apakah kamu yakin?"
     all_property_location: "Semua Lokasi Properti"
@@ -83,6 +144,7 @@ id:
     properties: "Properti"
     contact_us: "Kontak Kami"
     sell_property: "Jual atau Sewa Properti Saya"
+    sell_property_text: "Silahkan isi formulir ini dan Agen Listing kami akan menghubungi anda untuk mengunjungi properti anda serta memberi gambaran harga pasar untuk properti anda."
     phone: "Telephone"
     email: "Email"
     first_name: "Nama Depan"

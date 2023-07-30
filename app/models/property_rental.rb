@@ -11,6 +11,10 @@ class PropertyRental < ApplicationRecord
   validates :rental_type, uniqueness: { scope: :property_id }
 
   enum rental_type: { daily: 1, monthly: 2, yearly: 3 }
+  translates :rental_type
+  globalize_accessors locale: [:en, :id], attributes: [:rental_type]
+
+  include EnumTranslatable
 
   after_commit :update_property_availability
 

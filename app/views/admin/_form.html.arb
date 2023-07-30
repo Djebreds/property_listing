@@ -11,8 +11,8 @@ active_admin_form_for [:admin, resource], data: {
                                     level_1: { attribute: :property_category_id, label: t('active_admin.property.property_category'), collection: PropertyCategory.all },
                                     level_2: { attribute: :property_type_id, label: t('active_admin.property.property_type'), collection: PropertyType.all }
 
-    f.input :description, label: t('active_admin.property.description'), input_html: { rows: 2 }
-    f.input :note, label: t('active_admin.property.note'), input_html: { rows: 2 }
+    f.input :description, as: :text, label: t('active_admin.property.description'), input_html: { rows: 2 }
+    f.input :note, label: t('active_admin.property.note'), input_html: { rows: 5 }
 
     f.input :images, label: t('active_admin.property.images'), as: :file, input_html: { multiple: true }
 
@@ -21,6 +21,10 @@ active_admin_form_for [:admin, resource], data: {
     f.input :location, label: t('active_admin.property.location'), as: :search, input_html: {
                                     'data-target': 'google-map-places.field',
                                     'data-action': 'keydown->google-map-places#keydown' }
+
+    f.input :created_by, as: :hidden, input_html: { value: current_admin_user.role }
+    f.input :created_with, as: :hidden,  input_html: { value: current_admin_user.name }
+
     f.inputs 'Map' do
       div id: 'map', data: { target: 'google-map-places.map' }, style: 'width: 100%; height: 400px;'
     end

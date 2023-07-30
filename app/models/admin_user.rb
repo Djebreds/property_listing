@@ -4,7 +4,7 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable, :trackable
 
-  validates :role, :name, :email, presence: true
-
   enum role: { marketing_officer: 0, admin: 1 }
+
+  validates :role, :name, :email, presence: true
 end

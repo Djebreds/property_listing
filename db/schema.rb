@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_155805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,9 +90,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
   end
 
   create_table "property_categories", force: :cascade do |t|
-    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "property_category_translations", force: :cascade do |t|
+    t.bigint "property_category_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["locale"], name: "index_property_category_translations_on_locale"
+    t.index ["property_category_id"], name: "index_property_category_translations_on_property_category_id"
   end
 
   create_table "property_facilities", force: :cascade do |t|
@@ -108,13 +117,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
     t.index ["property_id"], name: "index_property_facilities_on_property_id"
   end
 
+  create_table "property_general_translations", force: :cascade do |t|
+    t.bigint "property_general_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "view"
+    t.string "surrounding"
+    t.index ["locale"], name: "index_property_general_translations_on_locale"
+    t.index ["property_general_id"], name: "index_property_general_translations_on_property_general_id"
+  end
+
   create_table "property_generals", force: :cascade do |t|
     t.string "land_size", default: "0", null: false
     t.string "building_size", default: "0", null: false
     t.integer "floor_level"
-    t.string "view"
     t.integer "style_design"
-    t.string "surrounding"
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -137,24 +155,41 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
     t.index ["property_id"], name: "index_property_indoors_on_property_id"
   end
 
+  create_table "property_kind_cost_translations", force: :cascade do |t|
+    t.bigint "property_kind_cost_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "value"
+    t.index ["locale"], name: "index_property_kind_cost_translations_on_locale"
+    t.index ["property_kind_cost_id"], name: "index_property_kind_cost_translations_on_property_kind_cost_id"
+  end
+
   create_table "property_kind_costs", force: :cascade do |t|
     t.bigint "property_kind_id", null: false
-    t.string "name", null: false
-    t.string "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_kind_id"], name: "index_property_kind_costs_on_property_kind_id"
   end
 
+  create_table "property_kind_translations", force: :cascade do |t|
+    t.bigint "property_kind_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "kind"
+    t.index ["locale"], name: "index_property_kind_translations_on_locale"
+    t.index ["property_kind_id"], name: "index_property_kind_translations_on_property_kind_id"
+  end
+
   create_table "property_kinds", force: :cascade do |t|
-    t.integer "kind", default: 0, null: false
     t.decimal "price_cents", default: "0.0", null: false
     t.string "price_currency", default: "IDR", null: false
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency", default: "IDR"
-    t.index ["kind", "property_id"], name: "index_property_kinds_on_kind_and_property_id", unique: true
     t.index ["property_id"], name: "index_property_kinds_on_property_id"
   end
 
@@ -168,15 +203,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
     t.index ["property_id"], name: "index_property_outdoors_on_property_id"
   end
 
+  create_table "property_rental_cost_translations", force: :cascade do |t|
+    t.bigint "property_rental_cost_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "value"
+    t.index ["locale"], name: "index_property_rental_cost_translations_on_locale"
+    t.index ["property_rental_cost_id"], name: "index_29c63e6eb11edab2933eef4c5b31bf21bce10191"
+  end
+
   create_table "property_rental_costs", force: :cascade do |t|
     t.bigint "property_rental_id", null: false
-    t.string "name", null: false
-    t.string "value", null: false
     t.index ["property_rental_id"], name: "index_property_rental_costs_on_property_rental_id"
   end
 
+  create_table "property_rental_translations", force: :cascade do |t|
+    t.bigint "property_rental_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "rental_type"
+    t.index ["locale"], name: "index_property_rental_translations_on_locale"
+    t.index ["property_rental_id"], name: "index_property_rental_translations_on_property_rental_id"
+  end
+
   create_table "property_rentals", force: :cascade do |t|
-    t.integer "rental_type", default: 0, null: false
     t.decimal "price_cents", default: "0.0", null: false
     t.string "price_currency", default: "IDR", null: false
     t.bigint "property_id", null: false
@@ -184,7 +237,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
     t.datetime "updated_at", null: false
     t.string "currency", default: "IDR"
     t.index ["property_id"], name: "index_property_rentals_on_property_id"
-    t.index ["rental_type", "property_id"], name: "index_property_rentals_on_rental_type_and_property_id", unique: true
+  end
+
+  create_table "property_request_translations", force: :cascade do |t|
+    t.bigint "property_request_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "property_category"
+    t.string "property_type"
+    t.index ["locale"], name: "index_property_request_translations_on_locale"
+    t.index ["property_request_id"], name: "index_property_request_translations_on_property_request_id"
   end
 
   create_table "property_requests", force: :cascade do |t|
@@ -192,9 +256,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
     t.string "last_name", null: false
     t.string "phone", null: false
     t.string "email", null: false
-    t.text "description", null: false
-    t.string "property_category", null: false
-    t.string "property_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -212,8 +273,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_090648) do
     t.index ["property_id"], name: "index_property_translations_on_property_id"
   end
 
+  create_table "property_type_translations", force: :cascade do |t|
+    t.bigint "property_type_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["locale"], name: "index_property_type_translations_on_locale"
+    t.index ["property_type_id"], name: "index_property_type_translations_on_property_type_id"
+  end
+
   create_table "property_types", force: :cascade do |t|
-    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "property_category_id", null: false
