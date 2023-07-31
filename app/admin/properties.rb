@@ -6,16 +6,27 @@ ActiveAdmin.register Property do
                 property_indoor_attributes: %i[id living_room dinning_room kitchen bedroom bathroom ensuite_bathroom maid_room storage guest_toilet _destroy],
                 property_outdoor_attributes: %i[id swimming_pool garden balcony _destroy]
 
+
+  filter :name
+  filter :property_category_id, as: :select, collection: -> { PropertyCategory.all }
+  filter :property_type_id, as: :select, collection: -> { [] }, input_html: { class: 'property-type-filter', id: 'type' }
+  filter :created_by
+  filter :created_with
+  filter :is_available
+  filter :created_at
+  filter :updated_at
+
   index do
     selectable_column
     id_column
-    column :name
-    column :property_category
-    column :property_type
-    column :created_by
-    column :created_with
-    column :created_at
-    column :updated_at
+    column t('active_admin.property.name'), :name
+    column t('active_admin.property.property_category'), :property_category
+    column t('active_admin.property.property_type'), :property_type
+    column t('active_admin.property.created_by'), :created_by
+    column t('active_admin.property.created_with'), :created_with
+    column t('active_admin.property.is_available'), :is_available
+    column t('active_admin.property.created_at'), :created_at
+    column t('active_admin.property.updated_at'), :updated_at
 
     actions
   end

@@ -9,6 +9,10 @@ class PropertyRequest < ApplicationRecord
 
   before_save :translate_attributes
 
+  def full_name
+    "#{first_name} #{last_name}".capitalize
+  end
+
   private
 
   def translate_attributes

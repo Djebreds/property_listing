@@ -10,13 +10,14 @@ class PropertyRental < ApplicationRecord
   validates :rental_type, :rental_type, presence: true
   validates :rental_type, uniqueness: { scope: :property_id }
 
-  enum rental_type: { daily: 1, monthly: 2, yearly: 3 }
+  enum rental_type: { dailys: 1, monthly: 2, yearly: 3 }
   translates :rental_type
   globalize_accessors locale: [:en, :id], attributes: [:rental_type]
 
   include EnumTranslatable
 
-  after_commit :update_property_availability
+  before_save :translate_attributes
+  after_commit :update_property_availability, if: :persisted?
 
   def display_price(currency)
     Money.new(self.price_cents, self.currency).exchange_to(currency).format
@@ -24,5 +25,15 @@ class PropertyRental < ApplicationRecord
 
   def update_property_availability
     property.check_available
+  end
+
+  private
+
+  def translate_attributes
+    I18n.locale = :en
+    self.rental_type_en = EasyTranslate.translate(self.rental_type, to: :en)
+
+    I18n.locale = :id
+    self.rental_type_id = EasyTranslate.translate(self.rental_type, to: :id)
   end
 end

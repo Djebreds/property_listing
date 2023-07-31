@@ -14,8 +14,10 @@ class PropertyKind < ApplicationRecord
   translates :kind
   globalize_accessors locale: [:en, :id], attributes: [:kind]
 
+  include EnumTranslatable
+
   before_save :translate_attributes
-  after_commit :update_property_availability
+  after_commit :update_property_availability, if: :persisted?
 
   def display_price(currency)
     Money.new(self.price_cents, self.currency).exchange_to(currency).format

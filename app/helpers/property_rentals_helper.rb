@@ -23,7 +23,7 @@ module PropertyRentalsHelper
     case rental_name
     when 'yearly' then translate[0]
     when 'monthly' then translate[1]
-    when 'daily' then translate[2]
+    when 'dailys' then translate[2]
     end
   end
 end

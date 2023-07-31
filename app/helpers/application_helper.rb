@@ -1,6 +1,6 @@
 module ApplicationHelper
   def available_currencies
-    { 'IDR' => 'IDR', 'USD' => 'USD', 'AUD' => 'AUD', 'GBP' => 'GBP' }
+    [['IDR', 'IDR'], ['USD', 'USD'], ['AUD', 'AUD'], ['GBP', 'GBP']]
   end
 
   def default_meta_tags

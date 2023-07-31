@@ -6,10 +6,11 @@
           <%= t('top_bar.change_language') %>
         </button>
         <ul class="dropdown-menu">
-          <li><%= link_to t('top_bar.indonesia'), root_path(locale: :id), class: 'dropdown-item' %></li>
-          <li><%= link_to t('top_bar.english'), root_path(locale: :en), class: 'dropdown-item' %></li>
+          <li><%= link_to t('top_bar.indonesia'),  url_for(locale: :id), class: 'dropdown-item' %></li>
+          <li><%= link_to t('top_bar.english'), url_for(locale: :en), class: 'dropdown-item' %></li>
         </ul>
       </div>
+
       <div class="btn-group" data-bs-theme="dark">
         <%= form_with url: set_currency_path, class: 'd-flex gap-3', method: :post do |f| %>
           <%= f.select :currency, options_for_select([["IDR", "IDR"], ["USD", "USD"], ["AUD", "AUD"], ["GBP", "GBP"]], session[:currency]), { include_blank: false }, class: 'border border-1 border-warning text-warning form-select form-select-sm' %>

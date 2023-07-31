@@ -1,6 +1,8 @@
 id:
   hello: "Halo Dunia"
   activerecord:
+    created_at: "Tanggal Dibuat"
+    updated_at: "Tanggal Diubah"
     enum_translatable:
       property_kind:
         kinds:
@@ -8,7 +10,7 @@ id:
           leasehold: "Penyewaan"
       property_rental:
         rental_types:
-          daily: "Daily"
+          dailys: "Daily"
           monthly: "Monthly"
           yearly: "Yearly"
     attributes:
@@ -58,9 +60,17 @@ id:
           balcony_yes: "Ya"
       property_rental:
         rental_types:
-          daily: "Harian"
+          dailys: "Harian"
           monthly: "Bulanan"
           yearly: "Tahunan"
+      property_request:
+        property_categories:
+          real_estate_for_sale: "Real Estate For Sale"
+          long_term_rental: "Long Term Rental"
+        property_type:
+          villa: "Vila"
+          land: "Land"
+          other: "Other"
   active_admin:
     destroy_item: "Apakah kamu yakin?"
     all_property_location: "Semua Lokasi Properti"
@@ -84,6 +94,7 @@ id:
       created_at: "Tanggal Dibuat"
       updated_at: "Tanggal Diubah"
       created_by: "Dibuat Oleh"
+      created_with: "Dibuat Dengan"
       is_available: "Ketersediaan"
       property_general:
         name: "Informasi Umum"
@@ -119,7 +130,7 @@ id:
       property_kind:
         name: "Jenis Properti"
         kind: "Jenis"
-        price: "Harga"
+        price: "Harga (IDR)"
         price_currency: "Mata Uang"
         property_costs:
           detail_cost: "Detail Biaya"
@@ -128,7 +139,7 @@ id:
       property_rental:
         name: "Rental Properti"
         rental: "Rental"
-        price: "Harga"
+        price: "Harga (IDR)"
         price_currency: "Mata Uang"
         property_costs:
           detail_cost: "Detail Biaya"
@@ -215,7 +226,7 @@ id:
     leasehold: "Penyewaan"
     yearly: "Tahunan"
     monthly: "Bulanan"
-    daily: "Harian"
+    dailys: "Harian"
     year: "Tahun"
     month: "Bulan"
     day: "Hari"

@@ -39,7 +39,7 @@ en:
           leashold: "Leasehold"
       property_rental:
         rental_types:
-          daily: "Daily"
+          dailys: "Daily"
           monthly: "Monthly"
           yearly: "Yearly"
     attributes:
@@ -89,9 +89,17 @@ en:
           balcony_yes: "Yes"
       property_rental:
         rental_types:
-          daily: "Daily"
+          dailys: "Daily"
           monthly: "Monthly"
           yearly: "Yearly"
+      property_request:
+        property_categories:
+          real_estate_for_sale: "Real Estate For Sale"
+          long_term_rental: "Long Term Rental"
+        property_type:
+          villa: "Vila"
+          land: "Land"
+          other: "Other"
   active_admin:
     destroy_item: "Are you sure?"
     all_property_location: "All Property Location"
@@ -115,6 +123,7 @@ en:
       created_at: "Created At"
       updated_at: "Updated At"
       created_by: "Created By"
+      created_with: "Created With"
       is_available: "Is Available"
       property_general:
         name: "General Information"
@@ -150,7 +159,7 @@ en:
       property_kind:
         name: "Property Kind"
         kind: "Kind"
-        price: "Price"
+        price: "Price (IDR)"
         price_currency: "Price Currency"
         property_costs:
           detail_cost: "Detail Cost"
@@ -159,7 +168,7 @@ en:
       property_rental:
         name: "Property Rental"
         rental: "Rental"
-        price: "Price"
+        price: "Price (IDR)"
         price_currency: "Price Currency"
         property_costs:
           detail_cost: "Detail Cost"
@@ -238,7 +247,7 @@ en:
     leasehold: "Leasehold"
     yearly: "Yearly"
     monthly: "Monthly"
-    daily: "Daily"
+    dailys: "Daily"
     year: "Year"
     month: "Month"
     day: "Day"
