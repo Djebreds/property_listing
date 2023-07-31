@@ -24,6 +24,9 @@ module PropertyRentalsHelper
     when 'yearly' then translate[0]
     when 'monthly' then translate[1]
     when 'dailys' then translate[2]
+    when 'tahunan' then translate[0]
+    when 'bulanan' then translate[1]
+    when 'harian' then translate[2]
     end
   end
 end

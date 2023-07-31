@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
   before_action :set_locale, :set_currency
-  after_action :verify_authorized, except: %i[index about contact set_currency detail send_request search], unless: -> { bypass_pundit? }
+  after_action :verify_authorized, except: %i[index about contact set_currency detail send_request new_request search], unless: -> { bypass_pundit? }
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale

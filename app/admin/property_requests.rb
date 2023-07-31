@@ -9,6 +9,12 @@ ActiveAdmin.register PropertyRequest do
     property_request.property_category = params[:property_request][:property_category].compact_blank
   end
 
+  batch_action :delete, confirm: I18n.t('active_admin.batch_action') do |ids|
+    property_request = PropertyRequest.where(id: ids)
+    property_request.destroy_all
+    redirect_back(fallback_location: admin_root_path, notice: I18n.t('active_admin.batch_action_notice'))
+  end
+
   filter :first_name
   filter :last_name
   filter :email
@@ -19,6 +25,7 @@ ActiveAdmin.register PropertyRequest do
   filter :updated_at
 
   index do
+    selectable_column
     id_column
     column :first_name do |name|
       name.full_name

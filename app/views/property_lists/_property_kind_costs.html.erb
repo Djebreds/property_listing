@@ -1,22 +1,20 @@
 <% if property.property_kinds.present? %>
-  <div class="tab-content px-0">
-    <% property.property_kinds.order(:kind).each_with_index do |kind, index| %>
+  <% property.property_kinds.order(:kind).each_with_index do |kind, index| %>
+    <div class="tab-pane fade <%= 'show active' if index == 0 %> kind-c-<%= kind.id %>">
       <% if kind.property_kind_costs.present? %>
-        <div class="tab-pane fade <%= 'show active' if index == 0 %> kind-c-<%= kind.id %>">
-          <div class="kind_costs px-0" >
-            <h3 class="ps-0"><%= kind_costs_name(kind.kind).upcase %></h3>
-            <table class="table table-sm table-hover my-4">
-            <% kind.property_kind_costs.each do |kind_cost| %>
-              <tr>
-                <td class="fw-semibold" scope="row" style="width: 40%"><%= kind_cost.name %></td>
-                <td>:</td>
-                <td class="fw-semibold"><%= kind_cost.value %></td>
-              </tr>
-            <% end %>
-            </table>
-          </div>
+        <div class="kind_costs px-0">
+          <h3 class="ps-0"><%= kind_costs_name(kind.kind) %></h3>
+          <table class="table table-sm table-hover my-4">
+          <% kind.property_kind_costs.each do |kind_cost| %>
+            <tr>
+              <td class="fw-semibold" scope="row" style="width: 40%"><%= kind_cost.name %></td>
+              <td>:</td>
+              <td class="fw-semibold"><%= kind_cost.value %></td>
+            </tr>
+          <% end %>
+          </table>
         </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>

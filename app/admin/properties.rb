@@ -16,6 +16,12 @@ ActiveAdmin.register Property do
   filter :created_at
   filter :updated_at
 
+  batch_action :delete, confirm: I18n.t('active_admin.batch_action') do |ids|
+    properties = Property.where(id: ids)
+    properties.destroy_all
+    redirect_back(fallback_location: admin_root_path, notice: I18n.t('active_admin.batch_action_notice'))
+  end
+
   index do
     selectable_column
     id_column

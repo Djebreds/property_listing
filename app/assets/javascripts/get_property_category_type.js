@@ -1,21 +1,21 @@
   $(document).ready(function() {
     // Function to update the property types based on the selected category
     function updatePropertyTypes() {
-      var property_category_id = $('#q_property_category_id').val();
+      let property_category_id = $('#q_property_category_id').val();
       $.ajax({
         url: 'property/property_type',
         data: { property_category_id: property_category_id },
         dataType: 'json',
         success: function(response) {
           // Find the property type filter's select element
-          var propertyTypeSelect = $('#type');
+          let propertyTypeSelect = $('#type');
           console.log(propertyTypeSelect)
           propertyTypeSelect.find('option').remove();
 
           propertyTypeSelect.append($('<option>').text('All').attr('value', ''));
 
           $.each(response, function(index, option) {
-            var newOption = new Option(option.name, option.id);
+            let newOption = new Option(option.name, option.id);
             propertyTypeSelect.append(newOption);
           });
 

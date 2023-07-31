@@ -82,6 +82,8 @@ id:
     password_confirmation: "Konfirmasi Password"
     sign_in_count: "Jumlah Masuk"
     created_at: "Tanggal Dibuat"
+    batch_action: "Apakah kamu yakin akan menghapus ini?"
+    batch_action_notice: "Data telah terhapus."
     property:
       name: "Nama"
       property_category: "Kategori Properti"

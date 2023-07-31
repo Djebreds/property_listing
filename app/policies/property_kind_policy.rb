@@ -11,6 +11,10 @@ class PropertyKindPolicy < ApplicationPolicy
     index?
   end
 
+  def edit?
+    index?
+  end
+
   def create?
     index?
   end

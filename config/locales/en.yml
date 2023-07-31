@@ -111,6 +111,8 @@ en:
     current_sign_in_at: "Current Sign in At"
     sign_in_count: "Sign In Count"
     created_at: "Created At"
+    batch_action: "Are you sure you want to delete these?"
+    batch_action_notice: "Data was deleted"
     property:
       name: "Name"
       property_category: "Property Category"

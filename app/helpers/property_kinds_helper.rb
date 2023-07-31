@@ -7,12 +7,12 @@ module PropertyKindsHelper
     kind_names(kind, translated)
   end
 
-  private
-
   def kind_names(kind_name, translate = [])
     case kind_name
     when 'freehold' then translate[0]
     when 'leasehold' then translate[1]
+    when 'hak milik' then translate[0]
+    when 'penyewaan' then translate[1]
     end
   end
 end

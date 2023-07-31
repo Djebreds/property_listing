@@ -60,10 +60,14 @@ export default class extends Controller {
           <div id="siteNotice"></div>
           <h3 id="firstHeading" class="firstHeading" style="margin-bottom: 0px;">${name}</h3>
           <p class="secondHeading" style="margin-top: 0px;">${category} | ${type}</p>
-          <h3 class="secondHeading" style="margin-bottom: 0px;">${rentalPrice}</h3>
-          <h5 class="secondHeading" style="margin-bottom: 5px;">${rentalName}</h5>
-          <h3 class="secondHeading" style="margin-bottom: 0px;">${kindPrice}</h3>
-          <h5 class="fourHeading" style="margin-bottom: 5px;">${kindName}</h5>
+          ${rentalName != "" ?
+            `<h3 class="secondHeading" style="margin-bottom: 0px;">${rentalPrice}</h3>
+             <h5 class="secondHeading" style="margin-bottom: 5px;">${rentalName}</h5>` : ''
+          }
+          ${kindName != "" ?
+            `<h3 class="secondHeading" style="margin-bottom: 0px;">${kindPrice}</h3>
+            <h5 class="fourHeading" style="margin-bottom: 5px;">${kindName}</h5>` : ''
+          }
           <div id="bodyContent">
             ${location}
           </div>

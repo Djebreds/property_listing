@@ -95,36 +95,38 @@
                 <% end %>
               </ul>
 
-              <hr>
+              <% if @property.property_indoor.present? || @property.property_general.present? %>
+                <hr>
+                <table class="table table-borderless table-sm my-4">
+                  <% if @property.property_indoor.present? %>
+                    <tr>
+                      <th class="fw-semibold" scope="row" style="width: 40%"><%= t('property.bedrooms') %></th>
+                      <td>:</td>
+                      <td><%= @property.property_indoor.bedroom %></td>
+                    </tr>
+                    <tr>
+                      <th class="fw-semibold" scope="row"><%= t('property.bathrooms') %></th>
+                      <td>:</td>
+                      <td><%= @property.property_indoor.bathroom %></td>
+                    </tr>
+                  <% end %>
+                  <% if @property.property_general.present? %>
+                    <tr>
+                      <td class="fw-semibold" scope="row"><%= t('property.building_size') %></td>
+                      <td>:</td>
+                      <td><%= @property.property_general.building_size_in_meter %></td>
+                    </tr>
+                    <tr>
+                      <th class="fw-semibold" scope="row"><%= t('property.land_size') %></th>
+                      <td>:</td>
+                      <td><%= @property.property_general.land_size_in_meter %></td>
+                    </tr>
+                  <% end %>
+                </table>
+                <hr>
+              <% end %>
 
-              <table class="table table-borderless table-sm my-4">
-                <% if @property.property_indoor.present? %>
-                  <tr>
-                    <th class="fw-semibold" scope="row" style="width: 40%"><%= t('property.bedrooms') %></th>
-                    <td>:</td>
-                    <td><%= @property.property_indoor.bedroom %></td>
-                  </tr>
-                  <tr>
-                    <th class="fw-semibold" scope="row"><%= t('property.bathrooms') %></th>
-                    <td>:</td>
-                    <td><%= @property.property_indoor.bathroom %></td>
-                  </tr>
-                <% end %>
-                <% if @property.property_general.present? %>
-                  <tr>
-                    <td class="fw-semibold" scope="row"><%= t('property.building_size') %></td>
-                    <td>:</td>
-                    <td><%= @property.property_general.building_size_in_meter %></td>
-                  </tr>
-                  <tr>
-                    <th class="fw-semibold" scope="row"><%= t('property.land_size') %></th>
-                    <td>:</td>
-                    <td><%= @property.property_general.land_size_in_meter %></td>
-                  </tr>
-                <% end %>
-              </table>
-              <hr>
-              <div class="d-flex gap-3 my-3 mt-md-0">
+              <div class="d-flex gap-3 my-3 mt-md-4">
                 <a href="mailto:support@propertylist.com" class="btn btn-warning justify-content-center flex-grow-1 py-2 d-flex gap-2 align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#212529" class="bi bi-envelope-at" viewBox="0 0 16 16">
                       <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
@@ -150,8 +152,10 @@
               </div>
             </div>
             <div class="row mx-auto">
-              <%= render 'property_kind_costs', property: @property %>
-              <%= render 'property_rental_costs', property: @property %>
+              <div class="tab-content px-0">
+                <%= render 'property_kind_costs', property: @property %>
+                <%= render 'property_rental_costs', property: @property %>
+              </div>
             </div>
 
             <div class="row mx-auto px-0">

@@ -5,7 +5,7 @@
         <div class="nav-item categories position-absolute start-50 end-0 bottom-0 top-10 justify-content-center p-0 mx-2 d-flex z-1" role="presentation" style="padding-bottom: 1rem">
           <div class="btn-group h-10 align-items-center">
             <% property.property_kinds.order(:kind).each_with_index do |kind, index| %>
-              <a href="#" class="btn btn-dark btn-sm text-white opacity-75 <%= 'active' if index == 0 %>" id="prices-<%= "#{kind.kind}-#{property.id}" %>-tab" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{kind.kind}-#{property.id}" %>" type="button" role="tab" aria-controls="prices-<%= "#{kind.kind}-#{property.id}" %>" aria-selected="true"><%= kind.kind %></a>
+              <a href="#" class="btn btn-dark btn-sm text-white opacity-75 <%= 'active' if index == 0 %>" id="prices-<%= "#{kind.kind.parameterize}-#{property.id}" %>-tab" data-bs-toggle="pill" data-bs-target="#prices-<%= "#{kind.kind.parameterize}-#{property.id}" %>" type="button" role="tab" aria-controls="prices-<%= "#{kind.kind.parameterize}-#{property.id}" %>" aria-selected="true"><%= kind.kind %></a>
             <% end %>
           </div>
         </div>
@@ -47,7 +47,7 @@
     <div class="tab-content" id="prices-tabContent">
       <% if property.property_kinds.present? %>
         <% property.property_kinds.order(:kind).each_with_index do |kind, index| %>
-          <div class="tab-pane fade <%= 'show active' if index == 0 %>" id="prices-<%= "#{kind.kind}-#{property.id}" %>" role="tabpanel" aria-labelledby="pills-<%= "#{kind.kind}-#{property.id}" %>-tab" tabindex="0">
+          <div class="tab-pane fade <%= 'show active' if index == 0 %>" id="prices-<%= "#{kind.kind.parameterize}-#{property.id}" %>" role="tabpanel" aria-labelledby="pills-<%= "#{kind.kind.parameterize}-#{property.id}" %>-tab" tabindex="0">
             <h5 class="fw-semibold"><%= kind.display_price(@currency) %></h5>
           </div>
         <% end %>

@@ -15,6 +15,10 @@ class PropertyRentalPolicy < ApplicationPolicy
     index?
   end
 
+  def edit?
+    index?
+  end
+
   def update?
     index?
   end

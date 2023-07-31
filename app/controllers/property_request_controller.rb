@@ -9,7 +9,10 @@ class PropertyRequestController < ApplicationController
     return if check_recaptcha
 
     if verify_recaptcha(model: @property_request)  && @property_request.save
-      format.html { redirect_to root_path , notice: t('property_request.request_success') }
+      respond_to do |format|
+        flash[:notice] = t('property_request.request_success')
+        format.html { redirect_to root_path }
+      end
     else
       render :new_request, status: :unprocessable_entity
     end
